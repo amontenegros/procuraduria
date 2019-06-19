@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://srv-desnet-services.produccion.gob.pe:7019/WCFSistemasService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFSistemasService" />
+  <xs:element name="BuscarPersonaEnReniec">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="Persona" nillable="true" type="q1:EnviarDatosdPersona" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarPersonaEnReniecResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="BuscarPersonaEnReniecResult" nillable="true" type="q2:BuscarPersonaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarPersonaEnReniecParametro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarPersonaEnReniecParametroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="BuscarPersonaEnReniecParametroResult" nillable="true" type="q3:BuscarPersonaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_RENIEC">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_RENIECResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="Validacion_RENIECResult" nillable="true" type="q4:BuscarPersonaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_OGACI">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_OGACIResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="Validacion_OGACIResult" nillable="true" type="q5:BuscarPersonaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarReniecProduccion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="Persona" nillable="true" type="q6:EnviarDatosdPersona" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarReniecProduccionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="BuscarReniecProduccionResult" nillable="true" type="q7:BuscarPersonaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarReniecProduccionActualizadoParametro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarReniecProduccionActualizadoParametroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="BuscarReniecProduccionActualizadoParametroResult" nillable="true" type="q8:BuscarPersonaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarReniecProduccionParametro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_DNIUSEREMP" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="ID_DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarReniecProduccionParametroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="BuscarReniecProduccionParametroResult" nillable="true" type="q9:BuscarPersonaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Persona_Natural_Reniec">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DNI" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Persona_Natural_ReniecResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="Persona_Natural_ReniecResult" nillable="true" type="q10:PersonaNaturalResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarCarnetExtranjeria">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="request" nillable="true" type="q11:CarnetExtranjeriaRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarCarnetExtranjeriaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="GuardarCarnetExtranjeriaResult" nillable="true" type="q12:PersonaNaturalResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

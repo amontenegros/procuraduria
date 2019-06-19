@@ -1,0 +1,178 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2127B91D-22CB-49AD-A98B-DF698475FCDF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PROCJUD.Request</RootNamespace>
+    <AssemblyName>PROCJUD.Request</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CondicionRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatMateriaTipoProcesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatProcesoInstanciaDocumentoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatProcesoInstanciaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatProcesoPlazoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DistritojudicialRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmbxprocesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EtapaProcesalRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EtapasRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExcepcionxprocesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FormFinalizacionRequest.cs" />
+    <Compile Include="MateriaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedidaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NaturalezaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpdRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="partials\ProcesoRequest.cs" />
+    <Compile Include="PlantaxprocesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcesoFilters.cs" />
+    <Compile Include="ProcesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestObjects.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResolimpugnadaxprocesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RzProcuraduriaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SedeRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SimpleInstanciaRequest.cs" />
+    <Compile Include="sp_listar_pagina_proceso_Result.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoExcepcionRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoInstanciaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoMontoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoPlazoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoProcesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoResponsabilidadRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwDatProcesoInstanciaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwDatProcesoPlazoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwDocumentoSitradocRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwEmbarcacionRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwPersonaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwPlantaPesqueraRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwProcesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwResolucionSitradocRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTipoInstanciaRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTipoPlazoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTipoProcesoRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTrabajadorProduceRequest.cs">
+      <DependentUpon>RequestObjects.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="RequestObjects.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RequestObjects.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Compile Include="ProcesoDelegacionMasiva.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

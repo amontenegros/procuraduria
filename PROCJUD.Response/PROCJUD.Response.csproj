@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{06F28A6D-4EED-4AE4-917A-5979FBCE4061}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PROCJUD.Response</RootNamespace>
+    <AssemblyName>PROCJUD.Response</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CondicionResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatMateriaTipoProcesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatProcesoInstanciaDocumentoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatProcesoInstanciaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DatProcesoPlazoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DesplegableResponse.cs" />
+    <Compile Include="DistritojudicialResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmbxprocesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EtapaProcesalResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EtapasResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExcepcionxprocesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MateriaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MedidaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NaturalezaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OpdResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaginationResponse.cs" />
+    <Compile Include="partials\DatProcesoInstanciaDocumentoResponse.cs" />
+    <Compile Include="partials\DatProcesoInstanciaResponse.cs" />
+    <Compile Include="partials\DatProcesoPlazoResponse.cs" />
+    <Compile Include="partials\ProcesoResponse.cs" />
+    <Compile Include="partials\ResolimpugnadaxprocesoResponse.cs" />
+    <Compile Include="partials\RzProcuraduriaResponse.cs" />
+    <Compile Include="partials\SedeResponse.cs" />
+    <Compile Include="partials\VwProcesoResponse.cs" />
+    <Compile Include="PlantaxprocesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResolimpugnadaxprocesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResponseObjects.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RzProcuraduriaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SedeResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_listar_pagina_proceso_Result.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoExcepcionResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoInstanciaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoMontoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoPlazoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoProcesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoResponsabilidadResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwDatProcesoInstanciaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwDatProcesoPlazoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwDocumentoSitradocResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwEmbarcacionResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwPersonaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwPlantaPesqueraResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwProcesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwResolucionSitradocResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTipoInstanciaResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTipoPlazoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTipoProcesoResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VwTrabajadorProduceResponse.cs">
+      <DependentUpon>ResponseObjects.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ResponseObjects.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ResponseObjects.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

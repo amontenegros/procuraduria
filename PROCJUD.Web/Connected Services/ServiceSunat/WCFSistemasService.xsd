@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFSistemasService" />
+  <xs:import schemaLocation="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Produce.AccesoalSistema.WCF" />
+  <xs:element name="BuscarSunatProduccionParametro">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_RUC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarSunatProduccionParametroResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="BuscarSunatProduccionParametroResult" nillable="true" type="q1:BuscarEmpresaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_SUNAT">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_RUC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_SUNATResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="Validacion_SUNATResult" nillable="true" type="q2:BuscarEmpresaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_OGACI">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ID_RUC" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Validacion_OGACIResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WCFSistemasService" minOccurs="0" name="Validacion_OGACIResult" nillable="true" type="q3:BuscarEmpresaResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Persona_Juridica_Sunat">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ruc" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Persona_Juridica_SunatResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Produce.AccesoalSistema.WCF" minOccurs="0" name="Persona_Juridica_SunatResult" nillable="true" type="q4:EmpresaResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

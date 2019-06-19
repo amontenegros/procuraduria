@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Produce.AccesoalSistema.WCF" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Produce.AccesoalSistema.WCF" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="EmpresaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Direccion" nillable="true" type="tns:DireccionResponse" />
+      <xs:element minOccurs="0" name="IdPersona" type="xs:int" />
+      <xs:element minOccurs="0" name="RazonSocial" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Ruc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmpresaResponse" nillable="true" type="tns:EmpresaResponse" />
+  <xs:complexType name="DireccionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CodDepartamento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodDistrito" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CodProvincia" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direc" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DireccionResponse" nillable="true" type="tns:DireccionResponse" />
+</xs:schema>

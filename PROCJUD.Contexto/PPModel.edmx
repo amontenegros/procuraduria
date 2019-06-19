@@ -1,0 +1,2319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_PROCURADURIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EMBXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PROCESO" Type="int" Nullable="false" />
+          <Property Name="ID_EMB" Type="int" Nullable="false" />
+          <Property Name="AUDITMOD" Type="datetime" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MATRICULA" Type="varchar" MaxLength="20" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="EXCEPCIONXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PROCESO" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_EXCEPCION" Type="int" Nullable="false" />
+          <Property Name="EXCEPCION" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AUDITMOD" Type="datetime" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PLANTAXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PROCESO" Type="int" Nullable="false" />
+          <Property Name="ID_PERSONA" Type="int" Nullable="false" />
+          <Property Name="AUDITMOD" Type="datetime" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="RESOLIMPUGNADAXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_PROCESO" Type="int" Nullable="false" />
+          <Property Name="ID_RESOLUCION" Type="int" Nullable="false" />
+          <Property Name="AUDITMOD" Type="datetime" Nullable="false" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_RESOLUCION_CONSAV" Type="int" />
+        </EntityType>
+        <EntityType Name="TIPO_EXCEPCION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="condicion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="dat_materia_tipo_proceso">
+          <Key>
+            <PropertyRef Name="id_materia" />
+            <PropertyRef Name="id_tipo_proceso" />
+          </Key>
+          <Property Name="id_materia" Type="int" Nullable="false" />
+          <Property Name="id_tipo_proceso" Type="int" Nullable="false" />
+          <Property Name="estado" Type="int" />
+        </EntityType>
+        <EntityType Name="DAT_PROCESO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia" />
+          </Key>
+          <Property Name="id_proceso_instancia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_instancia" Type="int" Nullable="false" />
+          <Property Name="id_proceso" Type="int" />
+          <Property Name="nombre_instancia" Type="varchar" MaxLength="100" />
+          <Property Name="numero_instancia" Type="varchar" MaxLength="100" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="cantidad_inicial" Type="numeric" Precision="20" Scale="2" />
+          <Property Name="cantidad_final" Type="numeric" Precision="20" Scale="2" />
+          <Property Name="tipo_finalizacion" Type="char" MaxLength="1" />
+          <Property Name="id_monto" Type="int" />
+          <Property Name="motivo_finalizacion" Type="varchar" MaxLength="1000" />
+          <Property Name="fecha_finalizacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="DAT_PROCESO_INSTANCIA_DOCUMENTO">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia_documento" />
+          </Key>
+          <Property Name="id_proceso_instancia_documento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_proceso_instancia" Type="int" />
+          <Property Name="id_documento" Type="int" />
+          <Property Name="numero_documento" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_documento" Type="datetime" />
+          <Property Name="archivo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DAT_PROCESO_PLAZO">
+          <Key>
+            <PropertyRef Name="id_proceso_plazo" />
+          </Key>
+          <Property Name="id_proceso_plazo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_plazo" Type="int" Nullable="false" />
+          <Property Name="id_proceso_instancia" Type="int" Nullable="false" />
+          <Property Name="id_abogado" Type="int" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_final" Type="datetime" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="anotacion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="distritojudicial">
+          <Key>
+            <PropertyRef Name="codigo_distritojudicial" />
+          </Key>
+          <Property Name="codigo_distritojudicial" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ETAPA_PROCESAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ETAPAS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_proceso" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="8000" />
+          <Property Name="auditmod" Type="datetime" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="ANOTACION" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="ESTADO" Type="char" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="medida">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_proceso" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="1000" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="auditmod" Type="datetime" />
+          <Property Name="ANOTACION" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="naturaleza">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_materia" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="int" />
+          <Property Name="orden" Type="int" />
+        </EntityType>
+        <EntityType Name="opd">
+          <Key>
+            <PropertyRef Name="id_opd" />
+          </Key>
+          <Property Name="id_opd" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_persona" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" />
+          <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="PROCESO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_documento" Type="int" />
+          <Property Name="id_naturaleza" Type="int" />
+          <Property Name="monto" Type="decimal" Precision="16" Scale="5" />
+          <Property Name="id_tipo_proceso" Type="int" />
+          <Property Name="id_tipo_responsabilidad" Type="int" />
+          <Property Name="codigo_departamento" Type="varchar" MaxLength="2" />
+          <Property Name="codigo_provincia" Type="varchar" MaxLength="2" />
+          <Property Name="codigo_distrito" Type="varchar" MaxLength="2" />
+          <Property Name="flag" Type="varchar" MaxLength="1" />
+          <Property Name="auditmod" Type="datetime" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="avance" Type="text" />
+          <Property Name="materia" Type="int" />
+          <Property Name="delito" Type="varchar" MaxLength="255" />
+          <Property Name="juzgado" Type="varchar" MaxLength="255" />
+          <Property Name="exp1" Type="varchar" MaxLength="255" />
+          <Property Name="sala" Type="varchar" MaxLength="255" />
+          <Property Name="exp2" Type="varchar" MaxLength="255" />
+          <Property Name="corte" Type="varchar" MaxLength="255" />
+          <Property Name="exp3" Type="varchar" MaxLength="255" />
+          <Property Name="correlativo" Type="varchar" MaxLength="255" />
+          <Property Name="codigo_distritojudicial" Type="varchar" MaxLength="2" />
+          <Property Name="codigo_sede" Type="varchar" MaxLength="2" />
+          <Property Name="fecVenc" Type="varchar" MaxLength="10" />
+          <Property Name="AUTORITATIVA" Type="varchar" MaxLength="255" />
+          <Property Name="JUZGADO2" Type="varchar" MaxLength="255" />
+          <Property Name="EXP4" Type="varchar" MaxLength="255" />
+          <Property Name="JUZGADO3" Type="varchar" MaxLength="255" />
+          <Property Name="EXP5" Type="varchar" MaxLength="255" />
+          <Property Name="JUZGADO4" Type="varchar" MaxLength="255" />
+          <Property Name="EXP6" Type="varchar" MaxLength="255" />
+          <Property Name="SALA2" Type="varchar" MaxLength="255" />
+          <Property Name="EXP7" Type="varchar" MaxLength="255" />
+          <Property Name="SALA3" Type="varchar" MaxLength="255" />
+          <Property Name="EXP8" Type="varchar" MaxLength="255" />
+          <Property Name="SALA4" Type="varchar" MaxLength="255" />
+          <Property Name="EXP9" Type="varchar" MaxLength="255" />
+          <Property Name="SALA5" Type="varchar" MaxLength="255" />
+          <Property Name="EXP10" Type="varchar" MaxLength="255" />
+          <Property Name="ID_RESOLUCION_AUTORITATIVA" Type="int" />
+          <Property Name="ID_ABOGADO" Type="int" />
+          <Property Name="JUZGADO_PAZ" Type="varchar" MaxLength="50" />
+          <Property Name="EXPEDIENTE_JUZGADO_PAZ" Type="varchar" MaxLength="50" />
+          <Property Name="ESPECIALISTA_JUZGADO_PAZ" Type="varchar" MaxLength="50" />
+          <Property Name="TRIBUNAL" Type="varchar" MaxLength="50" />
+          <Property Name="EXPEDIENTE_TRIBUNAL" Type="varchar" MaxLength="50" />
+          <Property Name="ESPECIALISTA_TRIBUNAL" Type="varchar" MaxLength="50" />
+          <Property Name="ESPECIALISTA_JUZGADO_FISCALIA" Type="varchar" MaxLength="50" />
+          <Property Name="ESPECIALISTA_SALA_SUPERIOR" Type="varchar" MaxLength="50" />
+          <Property Name="ESPECIALISTA_CORTE_SUPREMA" Type="varchar" MaxLength="50" />
+          <Property Name="ESTADO_PROCESO" Type="int" />
+          <Property Name="TIPO_FINALIZACION" Type="int" />
+          <Property Name="RESOLUCION_FINALIZACION" Type="varchar" MaxLength="50" />
+          <Property Name="FECHA_FINALIZACION" Type="varchar" MaxLength="10" />
+          <Property Name="ESTADO_ARCHIVAMIENTO" Type="int" />
+          <Property Name="MONTO_FINALIZACION" Type="decimal" Precision="16" Scale="5" />
+          <Property Name="AUDIT_FINALIZACION" Type="datetime" />
+          <Property Name="USUARIO_FINALIZACION" Type="varchar" MaxLength="50" />
+          <Property Name="MOTIVO_FINALIZACION" Type="varchar" MaxLength="500" />
+          <Property Name="EMBCLONADA1" Type="varchar" MaxLength="50" />
+          <Property Name="MATRICOLNADA1" Type="varchar" MaxLength="50" />
+          <Property Name="EMBCLONADA2" Type="varchar" MaxLength="50" />
+          <Property Name="MATRICLONADA2" Type="varchar" MaxLength="50" />
+          <Property Name="EMBCLONADA3" Type="varchar" MaxLength="50" />
+          <Property Name="MATRICLONADA3" Type="varchar" MaxLength="50" />
+          <Property Name="ID_TIPO_MONTO" Type="int" />
+          <Property Name="ID_ETAPA_PROCESAL" Type="int" />
+          <Property Name="UIT" Type="numeric" Precision="18" Scale="3" />
+          <Property Name="sector" Type="varchar" MaxLength="20" />
+          <Property Name="id_opd" Type="int" />
+        </EntityType>
+        <EntityType Name="RZ_procuraduria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_proceso" Type="int" />
+          <Property Name="razonsocial" Type="varchar" MaxLength="255" />
+          <Property Name="id_persona" Type="int" />
+          <Property Name="auditmod" Type="datetime" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="condicion" Type="int" />
+        </EntityType>
+        <EntityType Name="sede">
+          <Key>
+            <PropertyRef Name="codigo_sede" />
+            <PropertyRef Name="codigo_distritojudicial" />
+          </Key>
+          <Property Name="codigo_sede" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="codigo_distritojudicial" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TIPO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="id_tipo_instancia" />
+          </Key>
+          <Property Name="id_tipo_instancia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_proceso" Type="int" />
+          <Property Name="nombre_tipo_instancia" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="TIPO_MONTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TIPO_PLAZO">
+          <Key>
+            <PropertyRef Name="id_plazo" />
+          </Key>
+          <Property Name="id_plazo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_tipo_instancia" Type="int" Nullable="false" />
+          <Property Name="nombre_plazo" Type="varchar" MaxLength="255" />
+          <Property Name="dias_plazo" Type="numeric" Precision="3" Scale="0" />
+        </EntityType>
+        <EntityType Name="tipo_proceso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_materia" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="int" />
+          <Property Name="orden" Type="int" />
+        </EntityType>
+        <EntityType Name="tipo_responsabilidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_DAT_PROCESO_INSTANCIA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DAT_PROCESO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia" />
+            <PropertyRef Name="estado_descripcion" />
+            <PropertyRef Name="TIPO_FINALIZACION_DESCRIPCION" />
+          </Key>
+          <Property Name="ID_MATERIA" Type="int" />
+          <Property Name="MATERIA_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ID_NATURALEZA" Type="int" />
+          <Property Name="NATURALEZA_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ID_TIPO_PROCESO" Type="int" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ID_PROCESO" Type="int" />
+          <Property Name="correlativo" Type="varchar" MaxLength="255" />
+          <Property Name="nombre_instancia" Type="varchar" MaxLength="100" />
+          <Property Name="numero_instancia" Type="varchar" MaxLength="100" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="int" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="varchar" MaxLength="255" />
+          <Property Name="id_proceso_instancia" Type="int" Nullable="false" />
+          <Property Name="fecha_inicio" Type="datetime" />
+          <Property Name="fecha_finalizacion" Type="datetime" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="estado_descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cantidad_inicial" Type="numeric" Precision="20" Scale="2" />
+          <Property Name="cantidad_final" Type="numeric" Precision="20" Scale="2" />
+          <Property Name="id_monto" Type="int" />
+          <Property Name="UNIDAD_DESCRIPCION" Type="varchar" MaxLength="50" />
+          <Property Name="tipo_finalizacion" Type="char" MaxLength="1" />
+          <Property Name="TIPO_FINALIZACION_DESCRIPCION" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="motivo_finalizacion" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_DAT_PROCESO_PLAZO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DAT_PROCESO_PLAZO">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia" />
+            <PropertyRef Name="id_plazo" />
+          </Key>
+          <Property Name="ID_MATERIA" Type="int" />
+          <Property Name="MATERIA_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ID_NATURALEZA" Type="int" />
+          <Property Name="NATURALEZA_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ID_TIPO_PROCESO" Type="int" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="correlativo" Type="varchar" MaxLength="255" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="int" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="varchar" MaxLength="255" />
+          <Property Name="id_proceso_instancia" Type="int" Nullable="false" />
+          <Property Name="nombre_instancia" Type="varchar" MaxLength="100" />
+          <Property Name="numero_instancia" Type="varchar" MaxLength="100" />
+          <Property Name="FECHA_INICIO_INSTANCIA" Type="datetime" />
+          <Property Name="FECHA_FINAL_INSTANCIA" Type="datetime" />
+          <Property Name="id_plazo" Type="int" Nullable="false" />
+          <Property Name="nombre_plazo" Type="varchar" MaxLength="255" />
+          <Property Name="id_abogado" Type="int" />
+          <Property Name="NOMBRE_APELLIDO" Type="varchar" MaxLength="61" />
+          <Property Name="FECHA_INICIO_PLAZO" Type="datetime" />
+          <Property Name="FECHA_FINAL_PLAZO" Type="datetime" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="anotacion" Type="varchar" MaxLength="1000" />
+          <Property Name="dias_plazo" Type="numeric" Precision="3" Scale="0" />
+          <Property Name="DIFERENCIA" Type="int" />
+          <Property Name="diferencia_dias" Type="numeric" Precision="11" Scale="0" />
+          <Property Name="COLOR_ALERTA" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_DOCUMENTO_SITRADOC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DOCUMENTO_SITRADOC">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+            <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+            <PropertyRef Name="ID_ESTADO_DOCUMENTO" />
+            <PropertyRef Name="INDICATIVO_OFICIO" />
+            <PropertyRef Name="USUARIO" />
+            <PropertyRef Name="AUDITMOD" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="int" Nullable="false" />
+          <Property Name="ID_PERSONA" Type="int" />
+          <Property Name="ID_TUP" Type="int" />
+          <Property Name="ID_TIPO_DOCUMENTO" Type="int" Nullable="false" />
+          <Property Name="ID_ESTADO_DOCUMENTO" Type="int" Nullable="false" />
+          <Property Name="ID_CLASE_DOCUMENTO_INTERNO" Type="int" />
+          <Property Name="NUM_TRAM_DOCUMENTARIO" Type="varchar" MaxLength="255" />
+          <Property Name="INDICATIVO_OFICIO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ASUNTO" Type="varchar" MaxLength="1000" />
+          <Property Name="FOLIOS" Type="int" />
+          <Property Name="OBSERVACIONES" Type="varchar" MaxLength="2500" />
+          <Property Name="FECHA_RECEPCION" Type="varchar" MaxLength="255" />
+          <Property Name="PRIORIDAD" Type="varchar" MaxLength="255" />
+          <Property Name="USUARIO" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AUDITMOD" Type="datetime" Nullable="false" />
+          <Property Name="ESTADO_REQUISITO" Type="varchar" MaxLength="255" />
+          <Property Name="FECHA2" Type="varchar" MaxLength="255" />
+          <Property Name="coddep" Type="int" />
+          <Property Name="OBSFIN" Type="varchar" MaxLength="255" />
+          <Property Name="fecha3" Type="varchar" MaxLength="255" />
+          <Property Name="modificacion" Type="varchar" MaxLength="255" />
+          <Property Name="referencia" Type="varchar" MaxLength="255" />
+          <Property Name="Fecha_Max_Plazo" Type="varchar" MaxLength="10" />
+          <Property Name="v_asesor" Type="int" />
+          <Property Name="requerimiento" Type="int" />
+          <Property Name="coddep_responsable" Type="int" />
+          <Property Name="ESTADO_EXPEDIENTE" Type="int" />
+          <Property Name="SUJETO_PROCESO_JUDICIAL" Type="int" />
+          <Property Name="REPORTE_OCURRENCIA" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_EMBARCACION' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_EMBARCACION">
+          <Key>
+            <PropertyRef Name="ID_EMB" />
+          </Key>
+          <Property Name="ID_EMB" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_EMB" Type="varchar" MaxLength="100" />
+          <Property Name="MATRICULA_EMB" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_PERSONA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_PERSONA">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_TIPO_PERSONA" />
+            <PropertyRef Name="NRO_DOCUMENTO" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID_TIPO_PERSONA" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="356" />
+          <Property Name="NRO_DOCUMENTO" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NRO_DOCPERNATURAL" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_PLANTA_PESQUERA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_PLANTA_PESQUERA">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOMBRE" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NOMBRE" Type="varchar" MaxLength="356" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_PROCESO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_PROCESO">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="estado_descripcion" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="numero" Type="varchar" MaxLength="255" />
+          <Property Name="materia_descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="naturaleza_descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="tipo_proceso_descripcion" Type="varchar" MaxLength="255" />
+          <Property Name="abogado" Type="varchar" MaxLength="61" />
+          <Property Name="estado_descripcion" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ESTADO_PROCESO" Type="int" />
+          <Property Name="ID_ABOGADO" Type="int" />
+          <Property Name="auditmod" Type="datetime" />
+          <Property Name="id_materia" Type="int" />
+          <Property Name="id_naturaleza" Type="int" />
+          <Property Name="id_tipo_proceso" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_RESOLUCION_SITRADOC' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_RESOLUCION_SITRADOC">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nro_resol" Type="varchar" MaxLength="255" />
+          <Property Name="id_documento" Type="int" />
+          <Property Name="flag" Type="varchar" MaxLength="1" />
+          <Property Name="sumilla" Type="varchar" MaxLength="1000" />
+          <Property Name="id_tipo_resolucion" Type="int" />
+          <Property Name="auditmod" Type="datetime" />
+          <Property Name="usuario" Type="varchar" MaxLength="255" />
+          <Property Name="auditmod2" Type="datetime" />
+          <Property Name="usuario2" Type="varchar" MaxLength="255" />
+          <Property Name="FIni" Type="varchar" MaxLength="10" />
+          <Property Name="FFin" Type="varchar" MaxLength="10" />
+          <Property Name="FPublicacion" Type="varchar" MaxLength="10" />
+          <Property Name="coddep" Type="int" />
+          <Property Name="FFirma" Type="varchar" MaxLength="10" />
+          <Property Name="FErratas" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_TIPO_INSTANCIA' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_TIPO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="ID_TIPO_INSTANCIA" />
+          </Key>
+          <Property Name="ID_TIPO_PROCESO" Type="int" />
+          <Property Name="ID_MATERIA" Type="int" />
+          <Property Name="MATERIA_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ESTADO_TIPO_PROCESO" Type="int" />
+          <Property Name="ORDEN_TIPO_PROCESO" Type="int" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_TIPO_PLAZO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_TIPO_PLAZO">
+          <Key>
+            <PropertyRef Name="ID_PLAZO" />
+          </Key>
+          <Property Name="ID_TIPO_PROCESO" Type="int" />
+          <Property Name="ID_MATERIA" Type="int" />
+          <Property Name="MATERIA_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ESTADO_TIPO_PROCESO" Type="int" />
+          <Property Name="ORDEN_TIPO_PROCESO" Type="int" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="int" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="varchar" MaxLength="255" />
+          <Property Name="ID_PLAZO" Type="int" Nullable="false" />
+          <Property Name="NOMBRE_PLAZO" Type="varchar" MaxLength="255" />
+          <Property Name="DIAS_PLAZO" Type="numeric" Precision="3" Scale="0" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_TIPO_PROCESO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_TIPO_PROCESO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_PROCESO" />
+          </Key>
+          <Property Name="ID_TIPO_PROCESO" Type="int" Nullable="false" />
+          <Property Name="ID_MATERIA" Type="int" />
+          <Property Name="MATERIA_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="varchar" MaxLength="255" />
+          <Property Name="ESTADO_TIPO_PROCESO" Type="int" />
+          <Property Name="ORDEN_TIPO_PROCESO" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DB_PROCURADURIA.web_tramite.VW_TRABAJADOR_PRODUCE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_TRABAJADOR_PRODUCE">
+          <Key>
+            <PropertyRef Name="CODIGO_TRABAJADOR" />
+            <PropertyRef Name="NOMBRES_TRABAJADOR" />
+            <PropertyRef Name="APELLIDOS_TRABAJADOR" />
+            <PropertyRef Name="CONDICION" />
+          </Key>
+          <Property Name="CODIGO_TRABAJADOR" Type="int" Nullable="false" />
+          <Property Name="NOMBRES_TRABAJADOR" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="APELLIDOS_TRABAJADOR" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="CODDEP" Type="int" />
+          <Property Name="ESTADO" Type="varchar" MaxLength="20" />
+          <Property Name="CONDICION" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DAT_PROCESO_DOCUMENTO_INSTANCIA">
+          <End Role="DAT_PROCESO_INSTANCIA" Type="Self.DAT_PROCESO_INSTANCIA" Multiplicity="0..1" />
+          <End Role="DAT_PROCESO_INSTANCIA_DOCUMENTO" Type="Self.DAT_PROCESO_INSTANCIA_DOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA_DOCUMENTO">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_PLAZO">
+          <End Role="TIPO_PLAZO" Type="Self.TIPO_PLAZO" Multiplicity="1" />
+          <End Role="DAT_PROCESO_PLAZO" Type="Self.DAT_PROCESO_PLAZO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PLAZO">
+              <PropertyRef Name="id_plazo" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_PLAZO">
+              <PropertyRef Name="id_plazo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_PLAZO_INSTANCIA">
+          <End Role="DAT_PROCESO_INSTANCIA" Type="Self.DAT_PROCESO_INSTANCIA" Multiplicity="1" />
+          <End Role="DAT_PROCESO_PLAZO" Type="Self.DAT_PROCESO_PLAZO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_PLAZO">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_PROCESO">
+          <End Role="PROCESO" Type="Self.PROCESO" Multiplicity="0..1" />
+          <End Role="DAT_PROCESO_INSTANCIA" Type="Self.DAT_PROCESO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROCESO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_proceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_TIPO_INSTANCIA">
+          <End Role="TIPO_INSTANCIA" Type="Self.TIPO_INSTANCIA" Multiplicity="1" />
+          <End Role="DAT_PROCESO_INSTANCIA" Type="Self.DAT_PROCESO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_INSTANCIA">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_TIPO_MONTO">
+          <End Role="TIPO_MONTO" Type="Self.TIPO_MONTO" Multiplicity="0..1" />
+          <End Role="DAT_PROCESO_INSTANCIA" Type="Self.DAT_PROCESO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_MONTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_monto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_INSTANCIA_PROCESO">
+          <End Role="tipo_proceso" Type="Self.tipo_proceso" Multiplicity="0..1" />
+          <End Role="TIPO_INSTANCIA" Type="Self.TIPO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_proceso">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TIPO_INSTANCIA">
+              <PropertyRef Name="id_tipo_proceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_PLAZO_TIPO_INSTANCIA">
+          <End Role="TIPO_INSTANCIA" Type="Self.TIPO_INSTANCIA" Multiplicity="1" />
+          <End Role="TIPO_PLAZO" Type="Self.TIPO_PLAZO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_INSTANCIA">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Principal>
+            <Dependent Role="TIPO_PLAZO">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_contar_pagina_proceso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="web_tramite">
+          <Parameter Name="numero" Type="varchar" Mode="In" />
+          <Parameter Name="id_abogado" Type="int" Mode="In" />
+          <Parameter Name="id_materia" Type="int" Mode="In" />
+          <Parameter Name="id_naturaleza" Type="int" Mode="In" />
+          <Parameter Name="id_tipo_proceso" Type="int" Mode="In" />
+          <Parameter Name="id_estado" Type="int" Mode="In" />
+          <Parameter Name="fecha_inicio" Type="datetime" Mode="In" />
+          <Parameter Name="fecha_fin" Type="datetime" Mode="In" />
+          <Parameter Name="razon_social" Type="varchar" Mode="In" />
+          <Parameter Name="numero_resolucion" Type="varchar" Mode="In" />
+          <Parameter Name="expediente_judicial" Type="varchar" Mode="In" />
+          <Parameter Name="total" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="sp_get_correlativo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="web_tramite">
+          <Parameter Name="ID_MATERIA" Type="int" Mode="In" />
+          <Parameter Name="CORRELATIVO" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_get_id_resolucion_consav" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="web_tramite">
+          <Parameter Name="ID_RESOLUCION" Type="int" Mode="In" />
+          <Parameter Name="id_resolucion_directoral" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="sp_listar_pagina_proceso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="web_tramite">
+          <Parameter Name="page" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="numero" Type="varchar" Mode="In" />
+          <Parameter Name="id_abogado" Type="int" Mode="In" />
+          <Parameter Name="id_materia" Type="int" Mode="In" />
+          <Parameter Name="id_naturaleza" Type="int" Mode="In" />
+          <Parameter Name="id_tipo_proceso" Type="int" Mode="In" />
+          <Parameter Name="id_estado" Type="int" Mode="In" />
+          <Parameter Name="fecha_inicio" Type="datetime" Mode="In" />
+          <Parameter Name="fecha_fin" Type="datetime" Mode="In" />
+          <Parameter Name="razon_social" Type="varchar" Mode="In" />
+          <Parameter Name="numero_resolucion" Type="varchar" Mode="In" />
+          <Parameter Name="expediente_judicial" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="DB_PROCURADURIAModelStoreContainer">
+          <EntitySet Name="EMBXPROCESO" EntityType="Self.EMBXPROCESO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EXCEPCIONXPROCESO" EntityType="Self.EXCEPCIONXPROCESO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PLANTAXPROCESO" EntityType="Self.PLANTAXPROCESO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RESOLIMPUGNADAXPROCESO" EntityType="Self.RESOLIMPUGNADAXPROCESO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_EXCEPCION" EntityType="Self.TIPO_EXCEPCION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="condicion" EntityType="Self.condicion" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="dat_materia_tipo_proceso" EntityType="Self.dat_materia_tipo_proceso" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="DAT_PROCESO_INSTANCIA" EntityType="Self.DAT_PROCESO_INSTANCIA" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="DAT_PROCESO_INSTANCIA_DOCUMENTO" EntityType="Self.DAT_PROCESO_INSTANCIA_DOCUMENTO" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="DAT_PROCESO_PLAZO" EntityType="Self.DAT_PROCESO_PLAZO" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="distritojudicial" EntityType="Self.distritojudicial" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="ETAPA_PROCESAL" EntityType="Self.ETAPA_PROCESAL" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="ETAPAS" EntityType="Self.ETAPAS" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="materia" EntityType="Self.materia" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="medida" EntityType="Self.medida" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="naturaleza" EntityType="Self.naturaleza" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="opd" EntityType="Self.opd" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="PROCESO" EntityType="Self.PROCESO" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="RZ_procuraduria" EntityType="Self.RZ_procuraduria" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="sede" EntityType="Self.sede" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="TIPO_INSTANCIA" EntityType="Self.TIPO_INSTANCIA" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="TIPO_MONTO" EntityType="Self.TIPO_MONTO" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="TIPO_PLAZO" EntityType="Self.TIPO_PLAZO" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="tipo_proceso" EntityType="Self.tipo_proceso" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="tipo_responsabilidad" EntityType="Self.tipo_responsabilidad" Schema="web_tramite" store:Type="Tables" />
+          <EntitySet Name="VW_DAT_PROCESO_INSTANCIA" EntityType="Self.VW_DAT_PROCESO_INSTANCIA" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_DAT_PROCESO_INSTANCIA].[ID_MATERIA] AS [ID_MATERIA], 
+    [VW_DAT_PROCESO_INSTANCIA].[MATERIA_DESCRIPCION] AS [MATERIA_DESCRIPCION], 
+    [VW_DAT_PROCESO_INSTANCIA].[ID_NATURALEZA] AS [ID_NATURALEZA], 
+    [VW_DAT_PROCESO_INSTANCIA].[NATURALEZA_DESCRIPCION] AS [NATURALEZA_DESCRIPCION], 
+    [VW_DAT_PROCESO_INSTANCIA].[ID_TIPO_PROCESO] AS [ID_TIPO_PROCESO], 
+    [VW_DAT_PROCESO_INSTANCIA].[TIPO_PROCESO_DESCRIPCION] AS [TIPO_PROCESO_DESCRIPCION], 
+    [VW_DAT_PROCESO_INSTANCIA].[ID_PROCESO] AS [ID_PROCESO], 
+    [VW_DAT_PROCESO_INSTANCIA].[correlativo] AS [correlativo], 
+    [VW_DAT_PROCESO_INSTANCIA].[nombre_instancia] AS [nombre_instancia], 
+    [VW_DAT_PROCESO_INSTANCIA].[numero_instancia] AS [numero_instancia], 
+    [VW_DAT_PROCESO_INSTANCIA].[ID_TIPO_INSTANCIA] AS [ID_TIPO_INSTANCIA], 
+    [VW_DAT_PROCESO_INSTANCIA].[NOMBRE_TIPO_INSTANCIA] AS [NOMBRE_TIPO_INSTANCIA], 
+    [VW_DAT_PROCESO_INSTANCIA].[id_proceso_instancia] AS [id_proceso_instancia], 
+    [VW_DAT_PROCESO_INSTANCIA].[fecha_inicio] AS [fecha_inicio], 
+    [VW_DAT_PROCESO_INSTANCIA].[fecha_finalizacion] AS [fecha_finalizacion], 
+    [VW_DAT_PROCESO_INSTANCIA].[estado] AS [estado], 
+    [VW_DAT_PROCESO_INSTANCIA].[estado_descripcion] AS [estado_descripcion], 
+    [VW_DAT_PROCESO_INSTANCIA].[cantidad_inicial] AS [cantidad_inicial], 
+    [VW_DAT_PROCESO_INSTANCIA].[cantidad_final] AS [cantidad_final], 
+    [VW_DAT_PROCESO_INSTANCIA].[id_monto] AS [id_monto], 
+    [VW_DAT_PROCESO_INSTANCIA].[UNIDAD_DESCRIPCION] AS [UNIDAD_DESCRIPCION], 
+    [VW_DAT_PROCESO_INSTANCIA].[tipo_finalizacion] AS [tipo_finalizacion], 
+    [VW_DAT_PROCESO_INSTANCIA].[TIPO_FINALIZACION_DESCRIPCION] AS [TIPO_FINALIZACION_DESCRIPCION], 
+    [VW_DAT_PROCESO_INSTANCIA].[motivo_finalizacion] AS [motivo_finalizacion]
+    FROM [web_tramite].[VW_DAT_PROCESO_INSTANCIA] AS [VW_DAT_PROCESO_INSTANCIA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DAT_PROCESO_PLAZO" EntityType="Self.VW_DAT_PROCESO_PLAZO" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_DAT_PROCESO_PLAZO].[ID_MATERIA] AS [ID_MATERIA], 
+    [VW_DAT_PROCESO_PLAZO].[MATERIA_DESCRIPCION] AS [MATERIA_DESCRIPCION], 
+    [VW_DAT_PROCESO_PLAZO].[ID_NATURALEZA] AS [ID_NATURALEZA], 
+    [VW_DAT_PROCESO_PLAZO].[NATURALEZA_DESCRIPCION] AS [NATURALEZA_DESCRIPCION], 
+    [VW_DAT_PROCESO_PLAZO].[ID_TIPO_PROCESO] AS [ID_TIPO_PROCESO], 
+    [VW_DAT_PROCESO_PLAZO].[TIPO_PROCESO_DESCRIPCION] AS [TIPO_PROCESO_DESCRIPCION], 
+    [VW_DAT_PROCESO_PLAZO].[correlativo] AS [correlativo], 
+    [VW_DAT_PROCESO_PLAZO].[ID_TIPO_INSTANCIA] AS [ID_TIPO_INSTANCIA], 
+    [VW_DAT_PROCESO_PLAZO].[NOMBRE_TIPO_INSTANCIA] AS [NOMBRE_TIPO_INSTANCIA], 
+    [VW_DAT_PROCESO_PLAZO].[id_proceso_instancia] AS [id_proceso_instancia], 
+    [VW_DAT_PROCESO_PLAZO].[nombre_instancia] AS [nombre_instancia], 
+    [VW_DAT_PROCESO_PLAZO].[numero_instancia] AS [numero_instancia], 
+    [VW_DAT_PROCESO_PLAZO].[FECHA_INICIO_INSTANCIA] AS [FECHA_INICIO_INSTANCIA], 
+    [VW_DAT_PROCESO_PLAZO].[FECHA_FINAL_INSTANCIA] AS [FECHA_FINAL_INSTANCIA], 
+    [VW_DAT_PROCESO_PLAZO].[id_plazo] AS [id_plazo], 
+    [VW_DAT_PROCESO_PLAZO].[nombre_plazo] AS [nombre_plazo], 
+    [VW_DAT_PROCESO_PLAZO].[id_abogado] AS [id_abogado], 
+    [VW_DAT_PROCESO_PLAZO].[NOMBRE_APELLIDO] AS [NOMBRE_APELLIDO], 
+    [VW_DAT_PROCESO_PLAZO].[FECHA_INICIO_PLAZO] AS [FECHA_INICIO_PLAZO], 
+    [VW_DAT_PROCESO_PLAZO].[FECHA_FINAL_PLAZO] AS [FECHA_FINAL_PLAZO], 
+    [VW_DAT_PROCESO_PLAZO].[estado] AS [estado], 
+    [VW_DAT_PROCESO_PLAZO].[anotacion] AS [anotacion], 
+    [VW_DAT_PROCESO_PLAZO].[dias_plazo] AS [dias_plazo], 
+    [VW_DAT_PROCESO_PLAZO].[DIFERENCIA] AS [DIFERENCIA], 
+    [VW_DAT_PROCESO_PLAZO].[diferencia_dias] AS [diferencia_dias], 
+    [VW_DAT_PROCESO_PLAZO].[COLOR_ALERTA] AS [COLOR_ALERTA]
+    FROM [web_tramite].[VW_DAT_PROCESO_PLAZO] AS [VW_DAT_PROCESO_PLAZO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DOCUMENTO_SITRADOC" EntityType="Self.VW_DOCUMENTO_SITRADOC" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_DOCUMENTO_SITRADOC].[ID_DOCUMENTO] AS [ID_DOCUMENTO], 
+    [VW_DOCUMENTO_SITRADOC].[ID_PERSONA] AS [ID_PERSONA], 
+    [VW_DOCUMENTO_SITRADOC].[ID_TUP] AS [ID_TUP], 
+    [VW_DOCUMENTO_SITRADOC].[ID_TIPO_DOCUMENTO] AS [ID_TIPO_DOCUMENTO], 
+    [VW_DOCUMENTO_SITRADOC].[ID_ESTADO_DOCUMENTO] AS [ID_ESTADO_DOCUMENTO], 
+    [VW_DOCUMENTO_SITRADOC].[ID_CLASE_DOCUMENTO_INTERNO] AS [ID_CLASE_DOCUMENTO_INTERNO], 
+    [VW_DOCUMENTO_SITRADOC].[NUM_TRAM_DOCUMENTARIO] AS [NUM_TRAM_DOCUMENTARIO], 
+    [VW_DOCUMENTO_SITRADOC].[INDICATIVO_OFICIO] AS [INDICATIVO_OFICIO], 
+    [VW_DOCUMENTO_SITRADOC].[ASUNTO] AS [ASUNTO], 
+    [VW_DOCUMENTO_SITRADOC].[FOLIOS] AS [FOLIOS], 
+    [VW_DOCUMENTO_SITRADOC].[OBSERVACIONES] AS [OBSERVACIONES], 
+    [VW_DOCUMENTO_SITRADOC].[FECHA_RECEPCION] AS [FECHA_RECEPCION], 
+    [VW_DOCUMENTO_SITRADOC].[PRIORIDAD] AS [PRIORIDAD], 
+    [VW_DOCUMENTO_SITRADOC].[USUARIO] AS [USUARIO], 
+    [VW_DOCUMENTO_SITRADOC].[AUDITMOD] AS [AUDITMOD], 
+    [VW_DOCUMENTO_SITRADOC].[ESTADO_REQUISITO] AS [ESTADO_REQUISITO], 
+    [VW_DOCUMENTO_SITRADOC].[FECHA2] AS [FECHA2], 
+    [VW_DOCUMENTO_SITRADOC].[coddep] AS [coddep], 
+    [VW_DOCUMENTO_SITRADOC].[OBSFIN] AS [OBSFIN], 
+    [VW_DOCUMENTO_SITRADOC].[fecha3] AS [fecha3], 
+    [VW_DOCUMENTO_SITRADOC].[modificacion] AS [modificacion], 
+    [VW_DOCUMENTO_SITRADOC].[referencia] AS [referencia], 
+    [VW_DOCUMENTO_SITRADOC].[Fecha_Max_Plazo] AS [Fecha_Max_Plazo], 
+    [VW_DOCUMENTO_SITRADOC].[v_asesor] AS [v_asesor], 
+    [VW_DOCUMENTO_SITRADOC].[requerimiento] AS [requerimiento], 
+    [VW_DOCUMENTO_SITRADOC].[coddep_responsable] AS [coddep_responsable], 
+    [VW_DOCUMENTO_SITRADOC].[ESTADO_EXPEDIENTE] AS [ESTADO_EXPEDIENTE], 
+    [VW_DOCUMENTO_SITRADOC].[SUJETO_PROCESO_JUDICIAL] AS [SUJETO_PROCESO_JUDICIAL], 
+    [VW_DOCUMENTO_SITRADOC].[REPORTE_OCURRENCIA] AS [REPORTE_OCURRENCIA]
+    FROM [web_tramite].[VW_DOCUMENTO_SITRADOC] AS [VW_DOCUMENTO_SITRADOC]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_EMBARCACION" EntityType="Self.VW_EMBARCACION" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_EMBARCACION].[ID_EMB] AS [ID_EMB], 
+    [VW_EMBARCACION].[NOMBRE_EMB] AS [NOMBRE_EMB], 
+    [VW_EMBARCACION].[MATRICULA_EMB] AS [MATRICULA_EMB]
+    FROM [web_tramite].[VW_EMBARCACION] AS [VW_EMBARCACION]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PERSONA" EntityType="Self.VW_PERSONA" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_PERSONA].[ID] AS [ID], 
+    [VW_PERSONA].[ID_TIPO_PERSONA] AS [ID_TIPO_PERSONA], 
+    [VW_PERSONA].[NOMBRE] AS [NOMBRE], 
+    [VW_PERSONA].[NRO_DOCUMENTO] AS [NRO_DOCUMENTO], 
+    [VW_PERSONA].[NRO_DOCPERNATURAL] AS [NRO_DOCPERNATURAL]
+    FROM [web_tramite].[VW_PERSONA] AS [VW_PERSONA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PLANTA_PESQUERA" EntityType="Self.VW_PLANTA_PESQUERA" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_PLANTA_PESQUERA].[ID] AS [ID], 
+    [VW_PLANTA_PESQUERA].[NOMBRE] AS [NOMBRE]
+    FROM [web_tramite].[VW_PLANTA_PESQUERA] AS [VW_PLANTA_PESQUERA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PROCESO" EntityType="Self.VW_PROCESO" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_PROCESO].[id] AS [id], 
+    [VW_PROCESO].[numero] AS [numero], 
+    [VW_PROCESO].[materia_descripcion] AS [materia_descripcion], 
+    [VW_PROCESO].[naturaleza_descripcion] AS [naturaleza_descripcion], 
+    [VW_PROCESO].[tipo_proceso_descripcion] AS [tipo_proceso_descripcion], 
+    [VW_PROCESO].[abogado] AS [abogado], 
+    [VW_PROCESO].[estado_descripcion] AS [estado_descripcion], 
+    [VW_PROCESO].[ESTADO_PROCESO] AS [ESTADO_PROCESO], 
+    [VW_PROCESO].[ID_ABOGADO] AS [ID_ABOGADO], 
+    [VW_PROCESO].[auditmod] AS [auditmod], 
+    [VW_PROCESO].[id_materia] AS [id_materia], 
+    [VW_PROCESO].[id_naturaleza] AS [id_naturaleza], 
+    [VW_PROCESO].[id_tipo_proceso] AS [id_tipo_proceso]
+    FROM [web_tramite].[VW_PROCESO] AS [VW_PROCESO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_RESOLUCION_SITRADOC" EntityType="Self.VW_RESOLUCION_SITRADOC" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_RESOLUCION_SITRADOC].[id] AS [id], 
+    [VW_RESOLUCION_SITRADOC].[nro_resol] AS [nro_resol], 
+    [VW_RESOLUCION_SITRADOC].[id_documento] AS [id_documento], 
+    [VW_RESOLUCION_SITRADOC].[flag] AS [flag], 
+    [VW_RESOLUCION_SITRADOC].[sumilla] AS [sumilla], 
+    [VW_RESOLUCION_SITRADOC].[id_tipo_resolucion] AS [id_tipo_resolucion], 
+    [VW_RESOLUCION_SITRADOC].[auditmod] AS [auditmod], 
+    [VW_RESOLUCION_SITRADOC].[usuario] AS [usuario], 
+    [VW_RESOLUCION_SITRADOC].[auditmod2] AS [auditmod2], 
+    [VW_RESOLUCION_SITRADOC].[usuario2] AS [usuario2], 
+    [VW_RESOLUCION_SITRADOC].[FIni] AS [FIni], 
+    [VW_RESOLUCION_SITRADOC].[FFin] AS [FFin], 
+    [VW_RESOLUCION_SITRADOC].[FPublicacion] AS [FPublicacion], 
+    [VW_RESOLUCION_SITRADOC].[coddep] AS [coddep], 
+    [VW_RESOLUCION_SITRADOC].[FFirma] AS [FFirma], 
+    [VW_RESOLUCION_SITRADOC].[FErratas] AS [FErratas]
+    FROM [web_tramite].[VW_RESOLUCION_SITRADOC] AS [VW_RESOLUCION_SITRADOC]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_TIPO_INSTANCIA" EntityType="Self.VW_TIPO_INSTANCIA" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_TIPO_INSTANCIA].[ID_TIPO_PROCESO] AS [ID_TIPO_PROCESO], 
+    [VW_TIPO_INSTANCIA].[ID_MATERIA] AS [ID_MATERIA], 
+    [VW_TIPO_INSTANCIA].[MATERIA_DESCRIPCION] AS [MATERIA_DESCRIPCION], 
+    [VW_TIPO_INSTANCIA].[TIPO_PROCESO_DESCRIPCION] AS [TIPO_PROCESO_DESCRIPCION], 
+    [VW_TIPO_INSTANCIA].[ESTADO_TIPO_PROCESO] AS [ESTADO_TIPO_PROCESO], 
+    [VW_TIPO_INSTANCIA].[ORDEN_TIPO_PROCESO] AS [ORDEN_TIPO_PROCESO], 
+    [VW_TIPO_INSTANCIA].[ID_TIPO_INSTANCIA] AS [ID_TIPO_INSTANCIA], 
+    [VW_TIPO_INSTANCIA].[NOMBRE_TIPO_INSTANCIA] AS [NOMBRE_TIPO_INSTANCIA]
+    FROM [web_tramite].[VW_TIPO_INSTANCIA] AS [VW_TIPO_INSTANCIA]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_TIPO_PLAZO" EntityType="Self.VW_TIPO_PLAZO" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_TIPO_PLAZO].[ID_TIPO_PROCESO] AS [ID_TIPO_PROCESO], 
+    [VW_TIPO_PLAZO].[ID_MATERIA] AS [ID_MATERIA], 
+    [VW_TIPO_PLAZO].[MATERIA_DESCRIPCION] AS [MATERIA_DESCRIPCION], 
+    [VW_TIPO_PLAZO].[TIPO_PROCESO_DESCRIPCION] AS [TIPO_PROCESO_DESCRIPCION], 
+    [VW_TIPO_PLAZO].[ESTADO_TIPO_PROCESO] AS [ESTADO_TIPO_PROCESO], 
+    [VW_TIPO_PLAZO].[ORDEN_TIPO_PROCESO] AS [ORDEN_TIPO_PROCESO], 
+    [VW_TIPO_PLAZO].[ID_TIPO_INSTANCIA] AS [ID_TIPO_INSTANCIA], 
+    [VW_TIPO_PLAZO].[NOMBRE_TIPO_INSTANCIA] AS [NOMBRE_TIPO_INSTANCIA], 
+    [VW_TIPO_PLAZO].[ID_PLAZO] AS [ID_PLAZO], 
+    [VW_TIPO_PLAZO].[NOMBRE_PLAZO] AS [NOMBRE_PLAZO], 
+    [VW_TIPO_PLAZO].[DIAS_PLAZO] AS [DIAS_PLAZO]
+    FROM [web_tramite].[VW_TIPO_PLAZO] AS [VW_TIPO_PLAZO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_TIPO_PROCESO" EntityType="Self.VW_TIPO_PROCESO" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_TIPO_PROCESO].[ID_TIPO_PROCESO] AS [ID_TIPO_PROCESO], 
+    [VW_TIPO_PROCESO].[ID_MATERIA] AS [ID_MATERIA], 
+    [VW_TIPO_PROCESO].[MATERIA_DESCRIPCION] AS [MATERIA_DESCRIPCION], 
+    [VW_TIPO_PROCESO].[TIPO_PROCESO_DESCRIPCION] AS [TIPO_PROCESO_DESCRIPCION], 
+    [VW_TIPO_PROCESO].[ESTADO_TIPO_PROCESO] AS [ESTADO_TIPO_PROCESO], 
+    [VW_TIPO_PROCESO].[ORDEN_TIPO_PROCESO] AS [ORDEN_TIPO_PROCESO]
+    FROM [web_tramite].[VW_TIPO_PROCESO] AS [VW_TIPO_PROCESO]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_TRABAJADOR_PRODUCE" EntityType="Self.VW_TRABAJADOR_PRODUCE" store:Type="Views" store:Schema="web_tramite">
+            <DefiningQuery>SELECT 
+    [VW_TRABAJADOR_PRODUCE].[CODIGO_TRABAJADOR] AS [CODIGO_TRABAJADOR], 
+    [VW_TRABAJADOR_PRODUCE].[NOMBRES_TRABAJADOR] AS [NOMBRES_TRABAJADOR], 
+    [VW_TRABAJADOR_PRODUCE].[APELLIDOS_TRABAJADOR] AS [APELLIDOS_TRABAJADOR], 
+    [VW_TRABAJADOR_PRODUCE].[CODDEP] AS [CODDEP], 
+    [VW_TRABAJADOR_PRODUCE].[ESTADO] AS [ESTADO], 
+    [VW_TRABAJADOR_PRODUCE].[CONDICION] AS [CONDICION]
+    FROM [web_tramite].[VW_TRABAJADOR_PRODUCE] AS [VW_TRABAJADOR_PRODUCE]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DAT_PROCESO_DOCUMENTO_INSTANCIA" Association="Self.FK_DAT_PROCESO_DOCUMENTO_INSTANCIA">
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+            <End Role="DAT_PROCESO_INSTANCIA_DOCUMENTO" EntitySet="DAT_PROCESO_INSTANCIA_DOCUMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_PLAZO" Association="Self.FK_DAT_PROCESO_PLAZO">
+            <End Role="TIPO_PLAZO" EntitySet="TIPO_PLAZO" />
+            <End Role="DAT_PROCESO_PLAZO" EntitySet="DAT_PROCESO_PLAZO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_PLAZO_INSTANCIA" Association="Self.FK_DAT_PROCESO_PLAZO_INSTANCIA">
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+            <End Role="DAT_PROCESO_PLAZO" EntitySet="DAT_PROCESO_PLAZO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_PROCESO" Association="Self.FK_DAT_PROCESO_PROCESO">
+            <End Role="PROCESO" EntitySet="PROCESO" />
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_TIPO_INSTANCIA" Association="Self.FK_DAT_PROCESO_TIPO_INSTANCIA">
+            <End Role="TIPO_INSTANCIA" EntitySet="TIPO_INSTANCIA" />
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_TIPO_MONTO" Association="Self.FK_DAT_PROCESO_TIPO_MONTO">
+            <End Role="TIPO_MONTO" EntitySet="TIPO_MONTO" />
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_INSTANCIA_PROCESO" Association="Self.FK_TIPO_INSTANCIA_PROCESO">
+            <End Role="tipo_proceso" EntitySet="tipo_proceso" />
+            <End Role="TIPO_INSTANCIA" EntitySet="TIPO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_PLAZO_TIPO_INSTANCIA" Association="Self.FK_TIPO_PLAZO_TIPO_INSTANCIA">
+            <End Role="TIPO_INSTANCIA" EntitySet="TIPO_INSTANCIA" />
+            <End Role="TIPO_PLAZO" EntitySet="TIPO_PLAZO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_PROCURADURIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DB_PROCURADURIAEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_get_correlativo">
+            <Parameter Name="ID_MATERIA" Mode="In" Type="Int32" />
+            <Parameter Name="CORRELATIVO" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_get_id_resolucion_consav">
+            <Parameter Name="ID_RESOLUCION" Mode="In" Type="Int32" />
+            <Parameter Name="id_resolucion_directoral" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="EMBXPROCESO" EntityType="DB_PROCURADURIAModel.EMBXPROCESO" />
+          <EntitySet Name="EXCEPCIONXPROCESO" EntityType="DB_PROCURADURIAModel.EXCEPCIONXPROCESO" />
+          <EntitySet Name="PLANTAXPROCESO" EntityType="DB_PROCURADURIAModel.PLANTAXPROCESO" />
+          <EntitySet Name="RESOLIMPUGNADAXPROCESO" EntityType="DB_PROCURADURIAModel.RESOLIMPUGNADAXPROCESO" />
+          <EntitySet Name="TIPO_EXCEPCION" EntityType="DB_PROCURADURIAModel.TIPO_EXCEPCION" />
+          <EntitySet Name="DAT_PROCESO_INSTANCIA" EntityType="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA" />
+          <EntitySet Name="DAT_PROCESO_INSTANCIA_DOCUMENTO" EntityType="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA_DOCUMENTO" />
+          <EntitySet Name="DAT_PROCESO_PLAZO" EntityType="DB_PROCURADURIAModel.DAT_PROCESO_PLAZO" />
+          <EntitySet Name="PROCESO" EntityType="DB_PROCURADURIAModel.PROCESO" />
+          <EntitySet Name="TIPO_INSTANCIA" EntityType="DB_PROCURADURIAModel.TIPO_INSTANCIA" />
+          <EntitySet Name="TIPO_MONTO" EntityType="DB_PROCURADURIAModel.TIPO_MONTO" />
+          <EntitySet Name="TIPO_PLAZO" EntityType="DB_PROCURADURIAModel.TIPO_PLAZO" />
+          <EntitySet Name="tipo_proceso" EntityType="DB_PROCURADURIAModel.tipo_proceso" />
+          <EntitySet Name="opd" EntityType="DB_PROCURADURIAModel.opd" />
+          <EntitySet Name="VW_DAT_PROCESO_INSTANCIA" EntityType="DB_PROCURADURIAModel.VW_DAT_PROCESO_INSTANCIA" />
+          <EntitySet Name="VW_DAT_PROCESO_PLAZO" EntityType="DB_PROCURADURIAModel.VW_DAT_PROCESO_PLAZO" />
+          <EntitySet Name="VW_DOCUMENTO_SITRADOC" EntityType="DB_PROCURADURIAModel.VW_DOCUMENTO_SITRADOC" />
+          <EntitySet Name="VW_EMBARCACION" EntityType="DB_PROCURADURIAModel.VW_EMBARCACION" />
+          <EntitySet Name="VW_PERSONA" EntityType="DB_PROCURADURIAModel.VW_PERSONA" />
+          <EntitySet Name="VW_PLANTA_PESQUERA" EntityType="DB_PROCURADURIAModel.VW_PLANTA_PESQUERA" />
+          <EntitySet Name="VW_PROCESO" EntityType="DB_PROCURADURIAModel.VW_PROCESO" />
+          <EntitySet Name="VW_TIPO_INSTANCIA" EntityType="DB_PROCURADURIAModel.VW_TIPO_INSTANCIA" />
+          <EntitySet Name="VW_TIPO_PLAZO" EntityType="DB_PROCURADURIAModel.VW_TIPO_PLAZO" />
+          <EntitySet Name="VW_TIPO_PROCESO" EntityType="DB_PROCURADURIAModel.VW_TIPO_PROCESO" />
+          <EntitySet Name="VW_TRABAJADOR_PRODUCE" EntityType="DB_PROCURADURIAModel.VW_TRABAJADOR_PRODUCE" />
+          <AssociationSet Name="FK_DAT_PROCESO_DOCUMENTO_INSTANCIA" Association="DB_PROCURADURIAModel.FK_DAT_PROCESO_DOCUMENTO_INSTANCIA">
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+            <End Role="DAT_PROCESO_INSTANCIA_DOCUMENTO" EntitySet="DAT_PROCESO_INSTANCIA_DOCUMENTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_PLAZO_INSTANCIA" Association="DB_PROCURADURIAModel.FK_DAT_PROCESO_PLAZO_INSTANCIA">
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+            <End Role="DAT_PROCESO_PLAZO" EntitySet="DAT_PROCESO_PLAZO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_PROCESO" Association="DB_PROCURADURIAModel.FK_DAT_PROCESO_PROCESO">
+            <End Role="PROCESO" EntitySet="PROCESO" />
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_TIPO_INSTANCIA" Association="DB_PROCURADURIAModel.FK_DAT_PROCESO_TIPO_INSTANCIA">
+            <End Role="TIPO_INSTANCIA" EntitySet="TIPO_INSTANCIA" />
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_TIPO_MONTO" Association="DB_PROCURADURIAModel.FK_DAT_PROCESO_TIPO_MONTO">
+            <End Role="TIPO_MONTO" EntitySet="TIPO_MONTO" />
+            <End Role="DAT_PROCESO_INSTANCIA" EntitySet="DAT_PROCESO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DAT_PROCESO_PLAZO" Association="DB_PROCURADURIAModel.FK_DAT_PROCESO_PLAZO">
+            <End Role="TIPO_PLAZO" EntitySet="TIPO_PLAZO" />
+            <End Role="DAT_PROCESO_PLAZO" EntitySet="DAT_PROCESO_PLAZO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_INSTANCIA_PROCESO" Association="DB_PROCURADURIAModel.FK_TIPO_INSTANCIA_PROCESO">
+            <End Role="tipo_proceso" EntitySet="tipo_proceso" />
+            <End Role="TIPO_INSTANCIA" EntitySet="TIPO_INSTANCIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TIPO_PLAZO_TIPO_INSTANCIA" Association="DB_PROCURADURIAModel.FK_TIPO_PLAZO_TIPO_INSTANCIA">
+            <End Role="TIPO_INSTANCIA" EntitySet="TIPO_INSTANCIA" />
+            <End Role="TIPO_PLAZO" EntitySet="TIPO_PLAZO" />
+          </AssociationSet>
+          <EntitySet Name="condicion" EntityType="DB_PROCURADURIAModel.condicion" />
+          <EntitySet Name="distritojudicial" EntityType="DB_PROCURADURIAModel.distritojudicial" />
+          <EntitySet Name="ETAPA_PROCESAL" EntityType="DB_PROCURADURIAModel.ETAPA_PROCESAL" />
+          <EntitySet Name="ETAPAS" EntityType="DB_PROCURADURIAModel.ETAPAS" />
+          <EntitySet Name="materia" EntityType="DB_PROCURADURIAModel.materia" />
+          <EntitySet Name="medida" EntityType="DB_PROCURADURIAModel.medida" />
+          <EntitySet Name="naturaleza" EntityType="DB_PROCURADURIAModel.naturaleza" />
+          <EntitySet Name="RZ_procuraduria" EntityType="DB_PROCURADURIAModel.RZ_procuraduria" />
+          <EntitySet Name="sede" EntityType="DB_PROCURADURIAModel.sede" />
+          <EntitySet Name="tipo_responsabilidad" EntityType="DB_PROCURADURIAModel.tipo_responsabilidad" />
+          <FunctionImport Name="sp_contar_pagina_proceso">
+            <Parameter Name="numero" Mode="In" Type="String" />
+            <Parameter Name="id_abogado" Mode="In" Type="Int32" />
+            <Parameter Name="id_materia" Mode="In" Type="Int32" />
+            <Parameter Name="id_naturaleza" Mode="In" Type="Int32" />
+            <Parameter Name="id_tipo_proceso" Mode="In" Type="Int32" />
+            <Parameter Name="id_estado" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+            <Parameter Name="razon_social" Mode="In" Type="String" />
+            <Parameter Name="numero_resolucion" Mode="In" Type="String" />
+            <Parameter Name="expediente_judicial" Mode="In" Type="String" />
+            <Parameter Name="total" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_listar_pagina_proceso" EntitySet="VW_PROCESO" ReturnType="Collection(DB_PROCURADURIAModel.VW_PROCESO)">
+            <Parameter Name="page" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="numero" Mode="In" Type="String" />
+            <Parameter Name="id_abogado" Mode="In" Type="Int32" />
+            <Parameter Name="id_materia" Mode="In" Type="Int32" />
+            <Parameter Name="id_naturaleza" Mode="In" Type="Int32" />
+            <Parameter Name="id_tipo_proceso" Mode="In" Type="Int32" />
+            <Parameter Name="id_estado" Mode="In" Type="Int32" />
+            <Parameter Name="fecha_inicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fecha_fin" Mode="In" Type="DateTime" />
+            <Parameter Name="razon_social" Mode="In" Type="String" />
+            <Parameter Name="numero_resolucion" Mode="In" Type="String" />
+            <Parameter Name="expediente_judicial" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="dat_materia_tipo_proceso" EntityType="DB_PROCURADURIAModel.dat_materia_tipo_proceso" />
+          <EntitySet Name="VW_RESOLUCION_SITRADOC" EntityType="DB_PROCURADURIAModel.VW_RESOLUCION_SITRADOC" />
+          </EntityContainer>
+        <ComplexType Name="sp_listar_pagina_proceso_Result">
+          <Property Type="Int64" Name="item_number" Nullable="true" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="numero" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="materia_descripcion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="naturaleza_descripcion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="tipo_proceso_descripcion" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="abogado" Nullable="true" MaxLength="61" />
+          <Property Type="String" Name="estado_descripcion" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="ESTADO_PROCESO" Nullable="true" />
+          <Property Type="Int32" Name="ID_ABOGADO" Nullable="true" />
+          <Property Type="DateTime" Name="auditmod" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="id_materia" Nullable="true" />
+          <Property Type="Int32" Name="id_naturaleza" Nullable="true" />
+          <Property Type="Int32" Name="id_tipo_proceso" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="EMBXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PROCESO" Type="Int32" Nullable="false" />
+          <Property Name="ID_EMB" Type="Int32" Nullable="false" />
+          <Property Name="AUDITMOD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MATRICULA" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EXCEPCIONXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PROCESO" Type="Int32" Nullable="false" />
+          <Property Name="ID_TIPO_EXCEPCION" Type="Int32" Nullable="false" />
+          <Property Name="EXCEPCION" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AUDITMOD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PLANTAXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PROCESO" Type="Int32" Nullable="false" />
+          <Property Name="ID_PERSONA" Type="Int32" Nullable="false" />
+          <Property Name="AUDITMOD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="RESOLIMPUGNADAXPROCESO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_PROCESO" Type="Int32" Nullable="false" />
+          <Property Name="ID_RESOLUCION" Type="Int32" Nullable="false" />
+          <Property Name="AUDITMOD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_RESOLUCION_CONSAV" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TIPO_EXCEPCION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="DESCRIPCION" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DAT_PROCESO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia" />
+          </Key>
+          <Property Name="id_proceso_instancia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tipo_instancia" Type="Int32" Nullable="false" />
+          <Property Name="id_proceso" Type="Int32" />
+          <Property Name="nombre_instancia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="numero_instancia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="cantidad_inicial" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="cantidad_final" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="tipo_finalizacion" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="id_monto" Type="Int32" />
+          <Property Name="motivo_finalizacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_finalizacion" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DAT_PROCESO_INSTANCIA_DOCUMENTO" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_DOCUMENTO_INSTANCIA" FromRole="DAT_PROCESO_INSTANCIA" ToRole="DAT_PROCESO_INSTANCIA_DOCUMENTO" />
+          <NavigationProperty Name="DAT_PROCESO_PLAZO" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_PLAZO_INSTANCIA" FromRole="DAT_PROCESO_INSTANCIA" ToRole="DAT_PROCESO_PLAZO" />
+          <NavigationProperty Name="PROCESO" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_PROCESO" FromRole="DAT_PROCESO_INSTANCIA" ToRole="PROCESO" />
+          <NavigationProperty Name="TIPO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_TIPO_INSTANCIA" FromRole="DAT_PROCESO_INSTANCIA" ToRole="TIPO_INSTANCIA" />
+          <NavigationProperty Name="TIPO_MONTO" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_TIPO_MONTO" FromRole="DAT_PROCESO_INSTANCIA" ToRole="TIPO_MONTO" />
+        </EntityType>
+        <EntityType Name="DAT_PROCESO_INSTANCIA_DOCUMENTO">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia_documento" />
+          </Key>
+          <Property Name="id_proceso_instancia_documento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_proceso_instancia" Type="Int32" />
+          <Property Name="id_documento" Type="Int32" />
+          <Property Name="numero_documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_documento" Type="DateTime" Precision="3" />
+          <Property Name="archivo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_PROCESO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_DOCUMENTO_INSTANCIA" FromRole="DAT_PROCESO_INSTANCIA_DOCUMENTO" ToRole="DAT_PROCESO_INSTANCIA" />
+        </EntityType>
+        <EntityType Name="DAT_PROCESO_PLAZO">
+          <Key>
+            <PropertyRef Name="id_proceso_plazo" />
+          </Key>
+          <Property Name="id_proceso_plazo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_plazo" Type="Int32" Nullable="false" />
+          <Property Name="id_proceso_instancia" Type="Int32" Nullable="false" />
+          <Property Name="id_abogado" Type="Int32" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_final" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="anotacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_PROCESO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_PLAZO_INSTANCIA" FromRole="DAT_PROCESO_PLAZO" ToRole="DAT_PROCESO_INSTANCIA" />
+          <NavigationProperty Name="TIPO_PLAZO" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_PLAZO" FromRole="DAT_PROCESO_PLAZO" ToRole="TIPO_PLAZO" />
+        </EntityType>
+        <EntityType Name="PROCESO">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_documento" Type="Int32" />
+          <Property Name="id_naturaleza" Type="Int32" />
+          <Property Name="monto" Type="Decimal" Precision="16" Scale="5" />
+          <Property Name="id_tipo_proceso" Type="Int32" />
+          <Property Name="id_tipo_responsabilidad" Type="Int32" />
+          <Property Name="codigo_departamento" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_provincia" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_distrito" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="flag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="auditmod" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="avance" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="materia" Type="Int32" />
+          <Property Name="delito" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="juzgado" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="exp1" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sala" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="exp2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="corte" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="exp3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="correlativo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_distritojudicial" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_sede" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="fecVenc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="AUTORITATIVA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="JUZGADO2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXP4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="JUZGADO3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXP5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="JUZGADO4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXP6" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SALA2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXP7" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SALA3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXP8" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SALA4" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXP9" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SALA5" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXP10" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_RESOLUCION_AUTORITATIVA" Type="Int32" />
+          <Property Name="ID_ABOGADO" Type="Int32" />
+          <Property Name="JUZGADO_PAZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EXPEDIENTE_JUZGADO_PAZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESPECIALISTA_JUZGADO_PAZ" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TRIBUNAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EXPEDIENTE_TRIBUNAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESPECIALISTA_TRIBUNAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESPECIALISTA_JUZGADO_FISCALIA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESPECIALISTA_SALA_SUPERIOR" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESPECIALISTA_CORTE_SUPREMA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_PROCESO" Type="Int32" />
+          <Property Name="TIPO_FINALIZACION" Type="Int32" />
+          <Property Name="RESOLUCION_FINALIZACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_FINALIZACION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_ARCHIVAMIENTO" Type="Int32" />
+          <Property Name="MONTO_FINALIZACION" Type="Decimal" Precision="16" Scale="5" />
+          <Property Name="AUDIT_FINALIZACION" Type="DateTime" Precision="3" />
+          <Property Name="USUARIO_FINALIZACION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MOTIVO_FINALIZACION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EMBCLONADA1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MATRICOLNADA1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMBCLONADA2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MATRICLONADA2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EMBCLONADA3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MATRICLONADA3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_MONTO" Type="Int32" />
+          <Property Name="ID_ETAPA_PROCESAL" Type="Int32" />
+          <Property Name="UIT" Type="Decimal" Precision="18" Scale="3" />
+          <Property Name="sector" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="id_opd" Type="Int32" />
+          <NavigationProperty Name="DAT_PROCESO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_PROCESO" FromRole="PROCESO" ToRole="DAT_PROCESO_INSTANCIA" />
+        </EntityType>
+        <EntityType Name="TIPO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="id_tipo_instancia" />
+          </Key>
+          <Property Name="id_tipo_instancia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tipo_proceso" Type="Int32" />
+          <Property Name="nombre_tipo_instancia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_PROCESO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_TIPO_INSTANCIA" FromRole="TIPO_INSTANCIA" ToRole="DAT_PROCESO_INSTANCIA" />
+          <NavigationProperty Name="tipo_proceso" Relationship="DB_PROCURADURIAModel.FK_TIPO_INSTANCIA_PROCESO" FromRole="TIPO_INSTANCIA" ToRole="tipo_proceso" />
+          <NavigationProperty Name="TIPO_PLAZO" Relationship="DB_PROCURADURIAModel.FK_TIPO_PLAZO_TIPO_INSTANCIA" FromRole="TIPO_INSTANCIA" ToRole="TIPO_PLAZO" />
+        </EntityType>
+        <EntityType Name="TIPO_MONTO">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DAT_PROCESO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_TIPO_MONTO" FromRole="TIPO_MONTO" ToRole="DAT_PROCESO_INSTANCIA" />
+        </EntityType>
+        <EntityType Name="TIPO_PLAZO">
+          <Key>
+            <PropertyRef Name="id_plazo" />
+          </Key>
+          <Property Name="id_plazo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_tipo_instancia" Type="Int32" Nullable="false" />
+          <Property Name="nombre_plazo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="dias_plazo" Type="Decimal" Precision="3" Scale="0" />
+          <NavigationProperty Name="DAT_PROCESO_PLAZO" Relationship="DB_PROCURADURIAModel.FK_DAT_PROCESO_PLAZO" FromRole="TIPO_PLAZO" ToRole="DAT_PROCESO_PLAZO" />
+          <NavigationProperty Name="TIPO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_TIPO_PLAZO_TIPO_INSTANCIA" FromRole="TIPO_PLAZO" ToRole="TIPO_INSTANCIA" />
+        </EntityType>
+        <EntityType Name="tipo_proceso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_materia" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="orden" Type="Int32" />
+          <NavigationProperty Name="TIPO_INSTANCIA" Relationship="DB_PROCURADURIAModel.FK_TIPO_INSTANCIA_PROCESO" FromRole="tipo_proceso" ToRole="TIPO_INSTANCIA" />
+        </EntityType>
+        <EntityType Name="opd">
+          <Key>
+            <PropertyRef Name="id_opd" />
+          </Key>
+          <Property Name="id_opd" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_persona" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="VW_DAT_PROCESO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia" />
+            <PropertyRef Name="estado_descripcion" />
+            <PropertyRef Name="TIPO_FINALIZACION_DESCRIPCION" />
+          </Key>
+          <Property Name="ID_MATERIA" Type="Int32" />
+          <Property Name="MATERIA_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_NATURALEZA" Type="Int32" />
+          <Property Name="NATURALEZA_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_PROCESO" Type="Int32" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PROCESO" Type="Int32" />
+          <Property Name="correlativo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_instancia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="numero_instancia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="Int32" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_proceso_instancia" Type="Int32" Nullable="false" />
+          <Property Name="fecha_inicio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_finalizacion" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="estado_descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cantidad_inicial" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="cantidad_final" Type="Decimal" Precision="20" Scale="2" />
+          <Property Name="id_monto" Type="Int32" />
+          <Property Name="UNIDAD_DESCRIPCION" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_finalizacion" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="TIPO_FINALIZACION_DESCRIPCION" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="motivo_finalizacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_DAT_PROCESO_PLAZO">
+          <Key>
+            <PropertyRef Name="id_proceso_instancia" />
+            <PropertyRef Name="id_plazo" />
+          </Key>
+          <Property Name="ID_MATERIA" Type="Int32" />
+          <Property Name="MATERIA_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_NATURALEZA" Type="Int32" />
+          <Property Name="NATURALEZA_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_PROCESO" Type="Int32" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="correlativo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="Int32" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_proceso_instancia" Type="Int32" Nullable="false" />
+          <Property Name="nombre_instancia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="numero_instancia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_INICIO_INSTANCIA" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_FINAL_INSTANCIA" Type="DateTime" Precision="3" />
+          <Property Name="id_plazo" Type="Int32" Nullable="false" />
+          <Property Name="nombre_plazo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_abogado" Type="Int32" />
+          <Property Name="NOMBRE_APELLIDO" Type="String" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_INICIO_PLAZO" Type="DateTime" Precision="3" />
+          <Property Name="FECHA_FINAL_PLAZO" Type="DateTime" Precision="3" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="anotacion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="dias_plazo" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="DIFERENCIA" Type="Int32" />
+          <Property Name="diferencia_dias" Type="Decimal" Precision="11" Scale="0" />
+          <Property Name="COLOR_ALERTA" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_DOCUMENTO_SITRADOC">
+          <Key>
+            <PropertyRef Name="ID_DOCUMENTO" />
+            <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+            <PropertyRef Name="ID_ESTADO_DOCUMENTO" />
+            <PropertyRef Name="INDICATIVO_OFICIO" />
+            <PropertyRef Name="USUARIO" />
+            <PropertyRef Name="AUDITMOD" />
+          </Key>
+          <Property Name="ID_DOCUMENTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_PERSONA" Type="Int32" />
+          <Property Name="ID_TUP" Type="Int32" />
+          <Property Name="ID_TIPO_DOCUMENTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_ESTADO_DOCUMENTO" Type="Int32" Nullable="false" />
+          <Property Name="ID_CLASE_DOCUMENTO_INTERNO" Type="Int32" />
+          <Property Name="NUM_TRAM_DOCUMENTARIO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="INDICATIVO_OFICIO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ASUNTO" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FOLIOS" Type="Int32" />
+          <Property Name="OBSERVACIONES" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_RECEPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PRIORIDAD" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="USUARIO" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="AUDITMOD" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ESTADO_REQUISITO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="coddep" Type="Int32" />
+          <Property Name="OBSFIN" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="fecha3" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modificacion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="referencia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Max_Plazo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="v_asesor" Type="Int32" />
+          <Property Name="requerimiento" Type="Int32" />
+          <Property Name="coddep_responsable" Type="Int32" />
+          <Property Name="ESTADO_EXPEDIENTE" Type="Int32" />
+          <Property Name="SUJETO_PROCESO_JUDICIAL" Type="Int32" />
+          <Property Name="REPORTE_OCURRENCIA" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_EMBARCACION">
+          <Key>
+            <PropertyRef Name="ID_EMB" />
+          </Key>
+          <Property Name="ID_EMB" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_EMB" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MATRICULA_EMB" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_PERSONA">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ID_TIPO_PERSONA" />
+            <PropertyRef Name="NRO_DOCUMENTO" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID_TIPO_PERSONA" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" MaxLength="356" FixedLength="false" Unicode="false" />
+          <Property Name="NRO_DOCUMENTO" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NRO_DOCPERNATURAL" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_PLANTA_PESQUERA">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="NOMBRE" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE" Type="String" Nullable="false" MaxLength="356" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_PROCESO">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="estado_descripcion" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="numero" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="materia_descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="naturaleza_descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_proceso_descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="abogado" Type="String" MaxLength="61" FixedLength="false" Unicode="false" />
+          <Property Name="estado_descripcion" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_PROCESO" Type="Int32" />
+          <Property Name="ID_ABOGADO" Type="Int32" />
+          <Property Name="auditmod" Type="DateTime" Precision="3" />
+          <Property Name="id_materia" Type="Int32" />
+          <Property Name="id_naturaleza" Type="Int32" />
+          <Property Name="id_tipo_proceso" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VW_TIPO_INSTANCIA">
+          <Key>
+            <PropertyRef Name="ID_TIPO_INSTANCIA" />
+          </Key>
+          <Property Name="ID_TIPO_PROCESO" Type="Int32" />
+          <Property Name="ID_MATERIA" Type="Int32" />
+          <Property Name="MATERIA_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_TIPO_PROCESO" Type="Int32" />
+          <Property Name="ORDEN_TIPO_PROCESO" Type="Int32" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_TIPO_PLAZO">
+          <Key>
+            <PropertyRef Name="ID_PLAZO" />
+          </Key>
+          <Property Name="ID_TIPO_PROCESO" Type="Int32" />
+          <Property Name="ID_MATERIA" Type="Int32" />
+          <Property Name="MATERIA_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_TIPO_PROCESO" Type="Int32" />
+          <Property Name="ORDEN_TIPO_PROCESO" Type="Int32" />
+          <Property Name="ID_TIPO_INSTANCIA" Type="Int32" />
+          <Property Name="NOMBRE_TIPO_INSTANCIA" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ID_PLAZO" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRE_PLAZO" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DIAS_PLAZO" Type="Decimal" Precision="3" Scale="0" />
+        </EntityType>
+        <EntityType Name="VW_TIPO_PROCESO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_PROCESO" />
+          </Key>
+          <Property Name="ID_TIPO_PROCESO" Type="Int32" Nullable="false" />
+          <Property Name="ID_MATERIA" Type="Int32" />
+          <Property Name="MATERIA_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TIPO_PROCESO_DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO_TIPO_PROCESO" Type="Int32" />
+          <Property Name="ORDEN_TIPO_PROCESO" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VW_TRABAJADOR_PRODUCE">
+          <Key>
+            <PropertyRef Name="CODIGO_TRABAJADOR" />
+            <PropertyRef Name="NOMBRES_TRABAJADOR" />
+            <PropertyRef Name="APELLIDOS_TRABAJADOR" />
+            <PropertyRef Name="CONDICION" />
+          </Key>
+          <Property Name="CODIGO_TRABAJADOR" Type="Int32" Nullable="false" />
+          <Property Name="NOMBRES_TRABAJADOR" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS_TRABAJADOR" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CODDEP" Type="Int32" />
+          <Property Name="ESTADO" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CONDICION" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_DAT_PROCESO_DOCUMENTO_INSTANCIA">
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA" Role="DAT_PROCESO_INSTANCIA" Multiplicity="0..1" />
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA_DOCUMENTO" Role="DAT_PROCESO_INSTANCIA_DOCUMENTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA_DOCUMENTO">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_PLAZO_INSTANCIA">
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA" Role="DAT_PROCESO_INSTANCIA" Multiplicity="1" />
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_PLAZO" Role="DAT_PROCESO_PLAZO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_PLAZO">
+              <PropertyRef Name="id_proceso_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_PROCESO">
+          <End Type="DB_PROCURADURIAModel.PROCESO" Role="PROCESO" Multiplicity="0..1" />
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA" Role="DAT_PROCESO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROCESO">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_proceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_TIPO_INSTANCIA">
+          <End Type="DB_PROCURADURIAModel.TIPO_INSTANCIA" Role="TIPO_INSTANCIA" Multiplicity="1" />
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA" Role="DAT_PROCESO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_INSTANCIA">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_TIPO_MONTO">
+          <End Type="DB_PROCURADURIAModel.TIPO_MONTO" Role="TIPO_MONTO" Multiplicity="0..1" />
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA" Role="DAT_PROCESO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_MONTO">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_INSTANCIA">
+              <PropertyRef Name="id_monto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DAT_PROCESO_PLAZO">
+          <End Type="DB_PROCURADURIAModel.TIPO_PLAZO" Role="TIPO_PLAZO" Multiplicity="1" />
+          <End Type="DB_PROCURADURIAModel.DAT_PROCESO_PLAZO" Role="DAT_PROCESO_PLAZO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_PLAZO">
+              <PropertyRef Name="id_plazo" />
+            </Principal>
+            <Dependent Role="DAT_PROCESO_PLAZO">
+              <PropertyRef Name="id_plazo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_INSTANCIA_PROCESO">
+          <End Type="DB_PROCURADURIAModel.tipo_proceso" Role="tipo_proceso" Multiplicity="0..1" />
+          <End Type="DB_PROCURADURIAModel.TIPO_INSTANCIA" Role="TIPO_INSTANCIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipo_proceso">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="TIPO_INSTANCIA">
+              <PropertyRef Name="id_tipo_proceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TIPO_PLAZO_TIPO_INSTANCIA">
+          <End Type="DB_PROCURADURIAModel.TIPO_INSTANCIA" Role="TIPO_INSTANCIA" Multiplicity="1" />
+          <End Type="DB_PROCURADURIAModel.TIPO_PLAZO" Role="TIPO_PLAZO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_INSTANCIA">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Principal>
+            <Dependent Role="TIPO_PLAZO">
+              <PropertyRef Name="id_tipo_instancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="condicion">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="distritojudicial">
+          <Key>
+            <PropertyRef Name="codigo_distritojudicial" />
+          </Key>
+          <Property Name="codigo_distritojudicial" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ETAPA_PROCESAL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ETAPAS">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_proceso" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="8000" FixedLength="false" Unicode="false" />
+          <Property Name="auditmod" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ANOTACION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="materia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ESTADO" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="medida">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_proceso" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="auditmod" Type="DateTime" Precision="3" />
+          <Property Name="ANOTACION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="naturaleza">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_materia" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Int32" />
+          <Property Name="orden" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RZ_procuraduria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_proceso" Type="Int32" />
+          <Property Name="razonsocial" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_persona" Type="Int32" />
+          <Property Name="auditmod" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="condicion" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sede">
+          <Key>
+            <PropertyRef Name="codigo_sede" />
+            <PropertyRef Name="codigo_distritojudicial" />
+          </Key>
+          <Property Name="codigo_sede" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="codigo_distritojudicial" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tipo_responsabilidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="dat_materia_tipo_proceso">
+          <Key>
+            <PropertyRef Name="id_materia" />
+            <PropertyRef Name="id_tipo_proceso" />
+          </Key>
+          <Property Name="id_materia" Type="Int32" Nullable="false" />
+          <Property Name="id_tipo_proceso" Type="Int32" Nullable="false" />
+          <Property Name="estado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="VW_RESOLUCION_SITRADOC">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nro_resol" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="id_documento" Type="Int32" />
+          <Property Name="flag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sumilla" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="id_tipo_resolucion" Type="Int32" />
+          <Property Name="auditmod" Type="DateTime" Precision="3" />
+          <Property Name="usuario" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="auditmod2" Type="DateTime" Precision="3" />
+          <Property Name="usuario2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FIni" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FFin" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FPublicacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="coddep" Type="Int32" />
+          <Property Name="FFirma" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FErratas" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_PROCURADURIAModelStoreContainer" CdmEntityContainer="DB_PROCURADURIAEntities">
+          <FunctionImportMapping FunctionImportName="sp_get_correlativo" FunctionName="DB_PROCURADURIAModel.Store.sp_get_correlativo" />
+          <FunctionImportMapping FunctionImportName="sp_get_id_resolucion_consav" FunctionName="DB_PROCURADURIAModel.Store.sp_get_id_resolucion_consav" />
+          <EntitySetMapping Name="EMBXPROCESO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.EMBXPROCESO">
+              <MappingFragment StoreEntitySet="EMBXPROCESO">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="MATRICULA" ColumnName="MATRICULA" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="AUDITMOD" ColumnName="AUDITMOD" />
+                <ScalarProperty Name="ID_EMB" ColumnName="ID_EMB" />
+                <ScalarProperty Name="ID_PROCESO" ColumnName="ID_PROCESO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EXCEPCIONXPROCESO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.EXCEPCIONXPROCESO">
+              <MappingFragment StoreEntitySet="EXCEPCIONXPROCESO">
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="AUDITMOD" ColumnName="AUDITMOD" />
+                <ScalarProperty Name="EXCEPCION" ColumnName="EXCEPCION" />
+                <ScalarProperty Name="ID_TIPO_EXCEPCION" ColumnName="ID_TIPO_EXCEPCION" />
+                <ScalarProperty Name="ID_PROCESO" ColumnName="ID_PROCESO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PLANTAXPROCESO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.PLANTAXPROCESO">
+              <MappingFragment StoreEntitySet="PLANTAXPROCESO">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="AUDITMOD" ColumnName="AUDITMOD" />
+                <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+                <ScalarProperty Name="ID_PROCESO" ColumnName="ID_PROCESO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RESOLIMPUGNADAXPROCESO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.RESOLIMPUGNADAXPROCESO">
+              <MappingFragment StoreEntitySet="RESOLIMPUGNADAXPROCESO">
+                <ScalarProperty Name="ID_RESOLUCION_CONSAV" ColumnName="ID_RESOLUCION_CONSAV" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="AUDITMOD" ColumnName="AUDITMOD" />
+                <ScalarProperty Name="ID_RESOLUCION" ColumnName="ID_RESOLUCION" />
+                <ScalarProperty Name="ID_PROCESO" ColumnName="ID_PROCESO" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_EXCEPCION">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.TIPO_EXCEPCION">
+              <MappingFragment StoreEntitySet="TIPO_EXCEPCION">
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_PROCESO_INSTANCIA">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA">
+              <MappingFragment StoreEntitySet="DAT_PROCESO_INSTANCIA">
+                <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+                <ScalarProperty Name="motivo_finalizacion" ColumnName="motivo_finalizacion" />
+                <ScalarProperty Name="id_monto" ColumnName="id_monto" />
+                <ScalarProperty Name="tipo_finalizacion" ColumnName="tipo_finalizacion" />
+                <ScalarProperty Name="cantidad_final" ColumnName="cantidad_final" />
+                <ScalarProperty Name="cantidad_inicial" ColumnName="cantidad_inicial" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="numero_instancia" ColumnName="numero_instancia" />
+                <ScalarProperty Name="nombre_instancia" ColumnName="nombre_instancia" />
+                <ScalarProperty Name="id_proceso" ColumnName="id_proceso" />
+                <ScalarProperty Name="id_tipo_instancia" ColumnName="id_tipo_instancia" />
+                <ScalarProperty Name="id_proceso_instancia" ColumnName="id_proceso_instancia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_PROCESO_INSTANCIA_DOCUMENTO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.DAT_PROCESO_INSTANCIA_DOCUMENTO">
+              <MappingFragment StoreEntitySet="DAT_PROCESO_INSTANCIA_DOCUMENTO">
+                <ScalarProperty Name="archivo" ColumnName="archivo" />
+                <ScalarProperty Name="fecha_documento" ColumnName="fecha_documento" />
+                <ScalarProperty Name="numero_documento" ColumnName="numero_documento" />
+                <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+                <ScalarProperty Name="id_proceso_instancia" ColumnName="id_proceso_instancia" />
+                <ScalarProperty Name="id_proceso_instancia_documento" ColumnName="id_proceso_instancia_documento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DAT_PROCESO_PLAZO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.DAT_PROCESO_PLAZO">
+              <MappingFragment StoreEntitySet="DAT_PROCESO_PLAZO">
+                <ScalarProperty Name="anotacion" ColumnName="anotacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_final" ColumnName="fecha_final" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="id_abogado" ColumnName="id_abogado" />
+                <ScalarProperty Name="id_proceso_instancia" ColumnName="id_proceso_instancia" />
+                <ScalarProperty Name="id_plazo" ColumnName="id_plazo" />
+                <ScalarProperty Name="id_proceso_plazo" ColumnName="id_proceso_plazo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROCESO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.PROCESO">
+              <MappingFragment StoreEntitySet="PROCESO">
+                <ScalarProperty Name="id_opd" ColumnName="id_opd" />
+                <ScalarProperty Name="sector" ColumnName="sector" />
+                <ScalarProperty Name="UIT" ColumnName="UIT" />
+                <ScalarProperty Name="ID_ETAPA_PROCESAL" ColumnName="ID_ETAPA_PROCESAL" />
+                <ScalarProperty Name="ID_TIPO_MONTO" ColumnName="ID_TIPO_MONTO" />
+                <ScalarProperty Name="MATRICLONADA3" ColumnName="MATRICLONADA3" />
+                <ScalarProperty Name="EMBCLONADA3" ColumnName="EMBCLONADA3" />
+                <ScalarProperty Name="MATRICLONADA2" ColumnName="MATRICLONADA2" />
+                <ScalarProperty Name="EMBCLONADA2" ColumnName="EMBCLONADA2" />
+                <ScalarProperty Name="MATRICOLNADA1" ColumnName="MATRICOLNADA1" />
+                <ScalarProperty Name="EMBCLONADA1" ColumnName="EMBCLONADA1" />
+                <ScalarProperty Name="MOTIVO_FINALIZACION" ColumnName="MOTIVO_FINALIZACION" />
+                <ScalarProperty Name="USUARIO_FINALIZACION" ColumnName="USUARIO_FINALIZACION" />
+                <ScalarProperty Name="AUDIT_FINALIZACION" ColumnName="AUDIT_FINALIZACION" />
+                <ScalarProperty Name="MONTO_FINALIZACION" ColumnName="MONTO_FINALIZACION" />
+                <ScalarProperty Name="ESTADO_ARCHIVAMIENTO" ColumnName="ESTADO_ARCHIVAMIENTO" />
+                <ScalarProperty Name="FECHA_FINALIZACION" ColumnName="FECHA_FINALIZACION" />
+                <ScalarProperty Name="RESOLUCION_FINALIZACION" ColumnName="RESOLUCION_FINALIZACION" />
+                <ScalarProperty Name="TIPO_FINALIZACION" ColumnName="TIPO_FINALIZACION" />
+                <ScalarProperty Name="ESTADO_PROCESO" ColumnName="ESTADO_PROCESO" />
+                <ScalarProperty Name="ESPECIALISTA_CORTE_SUPREMA" ColumnName="ESPECIALISTA_CORTE_SUPREMA" />
+                <ScalarProperty Name="ESPECIALISTA_SALA_SUPERIOR" ColumnName="ESPECIALISTA_SALA_SUPERIOR" />
+                <ScalarProperty Name="ESPECIALISTA_JUZGADO_FISCALIA" ColumnName="ESPECIALISTA_JUZGADO_FISCALIA" />
+                <ScalarProperty Name="ESPECIALISTA_TRIBUNAL" ColumnName="ESPECIALISTA_TRIBUNAL" />
+                <ScalarProperty Name="EXPEDIENTE_TRIBUNAL" ColumnName="EXPEDIENTE_TRIBUNAL" />
+                <ScalarProperty Name="TRIBUNAL" ColumnName="TRIBUNAL" />
+                <ScalarProperty Name="ESPECIALISTA_JUZGADO_PAZ" ColumnName="ESPECIALISTA_JUZGADO_PAZ" />
+                <ScalarProperty Name="EXPEDIENTE_JUZGADO_PAZ" ColumnName="EXPEDIENTE_JUZGADO_PAZ" />
+                <ScalarProperty Name="JUZGADO_PAZ" ColumnName="JUZGADO_PAZ" />
+                <ScalarProperty Name="ID_ABOGADO" ColumnName="ID_ABOGADO" />
+                <ScalarProperty Name="ID_RESOLUCION_AUTORITATIVA" ColumnName="ID_RESOLUCION_AUTORITATIVA" />
+                <ScalarProperty Name="EXP10" ColumnName="EXP10" />
+                <ScalarProperty Name="SALA5" ColumnName="SALA5" />
+                <ScalarProperty Name="EXP9" ColumnName="EXP9" />
+                <ScalarProperty Name="SALA4" ColumnName="SALA4" />
+                <ScalarProperty Name="EXP8" ColumnName="EXP8" />
+                <ScalarProperty Name="SALA3" ColumnName="SALA3" />
+                <ScalarProperty Name="EXP7" ColumnName="EXP7" />
+                <ScalarProperty Name="SALA2" ColumnName="SALA2" />
+                <ScalarProperty Name="EXP6" ColumnName="EXP6" />
+                <ScalarProperty Name="JUZGADO4" ColumnName="JUZGADO4" />
+                <ScalarProperty Name="EXP5" ColumnName="EXP5" />
+                <ScalarProperty Name="JUZGADO3" ColumnName="JUZGADO3" />
+                <ScalarProperty Name="EXP4" ColumnName="EXP4" />
+                <ScalarProperty Name="JUZGADO2" ColumnName="JUZGADO2" />
+                <ScalarProperty Name="AUTORITATIVA" ColumnName="AUTORITATIVA" />
+                <ScalarProperty Name="fecVenc" ColumnName="fecVenc" />
+                <ScalarProperty Name="codigo_sede" ColumnName="codigo_sede" />
+                <ScalarProperty Name="codigo_distritojudicial" ColumnName="codigo_distritojudicial" />
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="exp3" ColumnName="exp3" />
+                <ScalarProperty Name="corte" ColumnName="corte" />
+                <ScalarProperty Name="exp2" ColumnName="exp2" />
+                <ScalarProperty Name="sala" ColumnName="sala" />
+                <ScalarProperty Name="exp1" ColumnName="exp1" />
+                <ScalarProperty Name="juzgado" ColumnName="juzgado" />
+                <ScalarProperty Name="delito" ColumnName="delito" />
+                <ScalarProperty Name="materia" ColumnName="materia" />
+                <ScalarProperty Name="avance" ColumnName="avance" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="auditmod" ColumnName="auditmod" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+                <ScalarProperty Name="codigo_distrito" ColumnName="codigo_distrito" />
+                <ScalarProperty Name="codigo_provincia" ColumnName="codigo_provincia" />
+                <ScalarProperty Name="codigo_departamento" ColumnName="codigo_departamento" />
+                <ScalarProperty Name="id_tipo_responsabilidad" ColumnName="id_tipo_responsabilidad" />
+                <ScalarProperty Name="id_tipo_proceso" ColumnName="id_tipo_proceso" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="id_naturaleza" ColumnName="id_naturaleza" />
+                <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_INSTANCIA">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.TIPO_INSTANCIA">
+              <MappingFragment StoreEntitySet="TIPO_INSTANCIA">
+                <ScalarProperty Name="nombre_tipo_instancia" ColumnName="nombre_tipo_instancia" />
+                <ScalarProperty Name="id_tipo_proceso" ColumnName="id_tipo_proceso" />
+                <ScalarProperty Name="id_tipo_instancia" ColumnName="id_tipo_instancia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_MONTO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.TIPO_MONTO">
+              <MappingFragment StoreEntitySet="TIPO_MONTO">
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_PLAZO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.TIPO_PLAZO">
+              <MappingFragment StoreEntitySet="TIPO_PLAZO">
+                <ScalarProperty Name="dias_plazo" ColumnName="dias_plazo" />
+                <ScalarProperty Name="nombre_plazo" ColumnName="nombre_plazo" />
+                <ScalarProperty Name="id_tipo_instancia" ColumnName="id_tipo_instancia" />
+                <ScalarProperty Name="id_plazo" ColumnName="id_plazo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_proceso">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.tipo_proceso">
+              <MappingFragment StoreEntitySet="tipo_proceso">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="opd">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.opd">
+              <MappingFragment StoreEntitySet="opd">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+                <ScalarProperty Name="id_opd" ColumnName="id_opd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DAT_PROCESO_INSTANCIA">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_DAT_PROCESO_INSTANCIA">
+              <MappingFragment StoreEntitySet="VW_DAT_PROCESO_INSTANCIA">
+                <ScalarProperty Name="motivo_finalizacion" ColumnName="motivo_finalizacion" />
+                <ScalarProperty Name="TIPO_FINALIZACION_DESCRIPCION" ColumnName="TIPO_FINALIZACION_DESCRIPCION" />
+                <ScalarProperty Name="tipo_finalizacion" ColumnName="tipo_finalizacion" />
+                <ScalarProperty Name="UNIDAD_DESCRIPCION" ColumnName="UNIDAD_DESCRIPCION" />
+                <ScalarProperty Name="id_monto" ColumnName="id_monto" />
+                <ScalarProperty Name="cantidad_final" ColumnName="cantidad_final" />
+                <ScalarProperty Name="cantidad_inicial" ColumnName="cantidad_inicial" />
+                <ScalarProperty Name="estado_descripcion" ColumnName="estado_descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fecha_finalizacion" ColumnName="fecha_finalizacion" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="id_proceso_instancia" ColumnName="id_proceso_instancia" />
+                <ScalarProperty Name="NOMBRE_TIPO_INSTANCIA" ColumnName="NOMBRE_TIPO_INSTANCIA" />
+                <ScalarProperty Name="ID_TIPO_INSTANCIA" ColumnName="ID_TIPO_INSTANCIA" />
+                <ScalarProperty Name="numero_instancia" ColumnName="numero_instancia" />
+                <ScalarProperty Name="nombre_instancia" ColumnName="nombre_instancia" />
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="ID_PROCESO" ColumnName="ID_PROCESO" />
+                <ScalarProperty Name="TIPO_PROCESO_DESCRIPCION" ColumnName="TIPO_PROCESO_DESCRIPCION" />
+                <ScalarProperty Name="ID_TIPO_PROCESO" ColumnName="ID_TIPO_PROCESO" />
+                <ScalarProperty Name="NATURALEZA_DESCRIPCION" ColumnName="NATURALEZA_DESCRIPCION" />
+                <ScalarProperty Name="ID_NATURALEZA" ColumnName="ID_NATURALEZA" />
+                <ScalarProperty Name="MATERIA_DESCRIPCION" ColumnName="MATERIA_DESCRIPCION" />
+                <ScalarProperty Name="ID_MATERIA" ColumnName="ID_MATERIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DAT_PROCESO_PLAZO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_DAT_PROCESO_PLAZO">
+              <MappingFragment StoreEntitySet="VW_DAT_PROCESO_PLAZO">
+                <ScalarProperty Name="COLOR_ALERTA" ColumnName="COLOR_ALERTA" />
+                <ScalarProperty Name="diferencia_dias" ColumnName="diferencia_dias" />
+                <ScalarProperty Name="DIFERENCIA" ColumnName="DIFERENCIA" />
+                <ScalarProperty Name="dias_plazo" ColumnName="dias_plazo" />
+                <ScalarProperty Name="anotacion" ColumnName="anotacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="FECHA_FINAL_PLAZO" ColumnName="FECHA_FINAL_PLAZO" />
+                <ScalarProperty Name="FECHA_INICIO_PLAZO" ColumnName="FECHA_INICIO_PLAZO" />
+                <ScalarProperty Name="NOMBRE_APELLIDO" ColumnName="NOMBRE_APELLIDO" />
+                <ScalarProperty Name="id_abogado" ColumnName="id_abogado" />
+                <ScalarProperty Name="nombre_plazo" ColumnName="nombre_plazo" />
+                <ScalarProperty Name="id_plazo" ColumnName="id_plazo" />
+                <ScalarProperty Name="FECHA_FINAL_INSTANCIA" ColumnName="FECHA_FINAL_INSTANCIA" />
+                <ScalarProperty Name="FECHA_INICIO_INSTANCIA" ColumnName="FECHA_INICIO_INSTANCIA" />
+                <ScalarProperty Name="numero_instancia" ColumnName="numero_instancia" />
+                <ScalarProperty Name="nombre_instancia" ColumnName="nombre_instancia" />
+                <ScalarProperty Name="id_proceso_instancia" ColumnName="id_proceso_instancia" />
+                <ScalarProperty Name="NOMBRE_TIPO_INSTANCIA" ColumnName="NOMBRE_TIPO_INSTANCIA" />
+                <ScalarProperty Name="ID_TIPO_INSTANCIA" ColumnName="ID_TIPO_INSTANCIA" />
+                <ScalarProperty Name="correlativo" ColumnName="correlativo" />
+                <ScalarProperty Name="TIPO_PROCESO_DESCRIPCION" ColumnName="TIPO_PROCESO_DESCRIPCION" />
+                <ScalarProperty Name="ID_TIPO_PROCESO" ColumnName="ID_TIPO_PROCESO" />
+                <ScalarProperty Name="NATURALEZA_DESCRIPCION" ColumnName="NATURALEZA_DESCRIPCION" />
+                <ScalarProperty Name="ID_NATURALEZA" ColumnName="ID_NATURALEZA" />
+                <ScalarProperty Name="MATERIA_DESCRIPCION" ColumnName="MATERIA_DESCRIPCION" />
+                <ScalarProperty Name="ID_MATERIA" ColumnName="ID_MATERIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DOCUMENTO_SITRADOC">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_DOCUMENTO_SITRADOC">
+              <MappingFragment StoreEntitySet="VW_DOCUMENTO_SITRADOC">
+                <ScalarProperty Name="REPORTE_OCURRENCIA" ColumnName="REPORTE_OCURRENCIA" />
+                <ScalarProperty Name="SUJETO_PROCESO_JUDICIAL" ColumnName="SUJETO_PROCESO_JUDICIAL" />
+                <ScalarProperty Name="ESTADO_EXPEDIENTE" ColumnName="ESTADO_EXPEDIENTE" />
+                <ScalarProperty Name="coddep_responsable" ColumnName="coddep_responsable" />
+                <ScalarProperty Name="requerimiento" ColumnName="requerimiento" />
+                <ScalarProperty Name="v_asesor" ColumnName="v_asesor" />
+                <ScalarProperty Name="Fecha_Max_Plazo" ColumnName="Fecha_Max_Plazo" />
+                <ScalarProperty Name="referencia" ColumnName="referencia" />
+                <ScalarProperty Name="modificacion" ColumnName="modificacion" />
+                <ScalarProperty Name="fecha3" ColumnName="fecha3" />
+                <ScalarProperty Name="OBSFIN" ColumnName="OBSFIN" />
+                <ScalarProperty Name="coddep" ColumnName="coddep" />
+                <ScalarProperty Name="FECHA2" ColumnName="FECHA2" />
+                <ScalarProperty Name="ESTADO_REQUISITO" ColumnName="ESTADO_REQUISITO" />
+                <ScalarProperty Name="AUDITMOD" ColumnName="AUDITMOD" />
+                <ScalarProperty Name="USUARIO" ColumnName="USUARIO" />
+                <ScalarProperty Name="PRIORIDAD" ColumnName="PRIORIDAD" />
+                <ScalarProperty Name="FECHA_RECEPCION" ColumnName="FECHA_RECEPCION" />
+                <ScalarProperty Name="OBSERVACIONES" ColumnName="OBSERVACIONES" />
+                <ScalarProperty Name="FOLIOS" ColumnName="FOLIOS" />
+                <ScalarProperty Name="ASUNTO" ColumnName="ASUNTO" />
+                <ScalarProperty Name="INDICATIVO_OFICIO" ColumnName="INDICATIVO_OFICIO" />
+                <ScalarProperty Name="NUM_TRAM_DOCUMENTARIO" ColumnName="NUM_TRAM_DOCUMENTARIO" />
+                <ScalarProperty Name="ID_CLASE_DOCUMENTO_INTERNO" ColumnName="ID_CLASE_DOCUMENTO_INTERNO" />
+                <ScalarProperty Name="ID_ESTADO_DOCUMENTO" ColumnName="ID_ESTADO_DOCUMENTO" />
+                <ScalarProperty Name="ID_TIPO_DOCUMENTO" ColumnName="ID_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="ID_TUP" ColumnName="ID_TUP" />
+                <ScalarProperty Name="ID_PERSONA" ColumnName="ID_PERSONA" />
+                <ScalarProperty Name="ID_DOCUMENTO" ColumnName="ID_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_EMBARCACION">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_EMBARCACION">
+              <MappingFragment StoreEntitySet="VW_EMBARCACION">
+                <ScalarProperty Name="MATRICULA_EMB" ColumnName="MATRICULA_EMB" />
+                <ScalarProperty Name="NOMBRE_EMB" ColumnName="NOMBRE_EMB" />
+                <ScalarProperty Name="ID_EMB" ColumnName="ID_EMB" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_PERSONA">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_PERSONA">
+              <MappingFragment StoreEntitySet="VW_PERSONA">
+                <ScalarProperty Name="NRO_DOCPERNATURAL" ColumnName="NRO_DOCPERNATURAL" />
+                <ScalarProperty Name="NRO_DOCUMENTO" ColumnName="NRO_DOCUMENTO" />
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID_TIPO_PERSONA" ColumnName="ID_TIPO_PERSONA" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_PLANTA_PESQUERA">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_PLANTA_PESQUERA">
+              <MappingFragment StoreEntitySet="VW_PLANTA_PESQUERA">
+                <ScalarProperty Name="NOMBRE" ColumnName="NOMBRE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_PROCESO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_PROCESO">
+              <MappingFragment StoreEntitySet="VW_PROCESO">
+                <ScalarProperty Name="id_tipo_proceso" ColumnName="id_tipo_proceso" />
+                <ScalarProperty Name="id_naturaleza" ColumnName="id_naturaleza" />
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+                <ScalarProperty Name="auditmod" ColumnName="auditmod" />
+                <ScalarProperty Name="ID_ABOGADO" ColumnName="ID_ABOGADO" />
+                <ScalarProperty Name="ESTADO_PROCESO" ColumnName="ESTADO_PROCESO" />
+                <ScalarProperty Name="estado_descripcion" ColumnName="estado_descripcion" />
+                <ScalarProperty Name="abogado" ColumnName="abogado" />
+                <ScalarProperty Name="tipo_proceso_descripcion" ColumnName="tipo_proceso_descripcion" />
+                <ScalarProperty Name="naturaleza_descripcion" ColumnName="naturaleza_descripcion" />
+                <ScalarProperty Name="materia_descripcion" ColumnName="materia_descripcion" />
+                <ScalarProperty Name="numero" ColumnName="numero" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_TIPO_INSTANCIA">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_TIPO_INSTANCIA">
+              <MappingFragment StoreEntitySet="VW_TIPO_INSTANCIA">
+                <ScalarProperty Name="NOMBRE_TIPO_INSTANCIA" ColumnName="NOMBRE_TIPO_INSTANCIA" />
+                <ScalarProperty Name="ID_TIPO_INSTANCIA" ColumnName="ID_TIPO_INSTANCIA" />
+                <ScalarProperty Name="ORDEN_TIPO_PROCESO" ColumnName="ORDEN_TIPO_PROCESO" />
+                <ScalarProperty Name="ESTADO_TIPO_PROCESO" ColumnName="ESTADO_TIPO_PROCESO" />
+                <ScalarProperty Name="TIPO_PROCESO_DESCRIPCION" ColumnName="TIPO_PROCESO_DESCRIPCION" />
+                <ScalarProperty Name="MATERIA_DESCRIPCION" ColumnName="MATERIA_DESCRIPCION" />
+                <ScalarProperty Name="ID_MATERIA" ColumnName="ID_MATERIA" />
+                <ScalarProperty Name="ID_TIPO_PROCESO" ColumnName="ID_TIPO_PROCESO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_TIPO_PLAZO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_TIPO_PLAZO">
+              <MappingFragment StoreEntitySet="VW_TIPO_PLAZO">
+                <ScalarProperty Name="DIAS_PLAZO" ColumnName="DIAS_PLAZO" />
+                <ScalarProperty Name="NOMBRE_PLAZO" ColumnName="NOMBRE_PLAZO" />
+                <ScalarProperty Name="ID_PLAZO" ColumnName="ID_PLAZO" />
+                <ScalarProperty Name="NOMBRE_TIPO_INSTANCIA" ColumnName="NOMBRE_TIPO_INSTANCIA" />
+                <ScalarProperty Name="ID_TIPO_INSTANCIA" ColumnName="ID_TIPO_INSTANCIA" />
+                <ScalarProperty Name="ORDEN_TIPO_PROCESO" ColumnName="ORDEN_TIPO_PROCESO" />
+                <ScalarProperty Name="ESTADO_TIPO_PROCESO" ColumnName="ESTADO_TIPO_PROCESO" />
+                <ScalarProperty Name="TIPO_PROCESO_DESCRIPCION" ColumnName="TIPO_PROCESO_DESCRIPCION" />
+                <ScalarProperty Name="MATERIA_DESCRIPCION" ColumnName="MATERIA_DESCRIPCION" />
+                <ScalarProperty Name="ID_MATERIA" ColumnName="ID_MATERIA" />
+                <ScalarProperty Name="ID_TIPO_PROCESO" ColumnName="ID_TIPO_PROCESO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_TIPO_PROCESO">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_TIPO_PROCESO">
+              <MappingFragment StoreEntitySet="VW_TIPO_PROCESO">
+                <ScalarProperty Name="ORDEN_TIPO_PROCESO" ColumnName="ORDEN_TIPO_PROCESO" />
+                <ScalarProperty Name="ESTADO_TIPO_PROCESO" ColumnName="ESTADO_TIPO_PROCESO" />
+                <ScalarProperty Name="TIPO_PROCESO_DESCRIPCION" ColumnName="TIPO_PROCESO_DESCRIPCION" />
+                <ScalarProperty Name="MATERIA_DESCRIPCION" ColumnName="MATERIA_DESCRIPCION" />
+                <ScalarProperty Name="ID_MATERIA" ColumnName="ID_MATERIA" />
+                <ScalarProperty Name="ID_TIPO_PROCESO" ColumnName="ID_TIPO_PROCESO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_TRABAJADOR_PRODUCE">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_TRABAJADOR_PRODUCE">
+              <MappingFragment StoreEntitySet="VW_TRABAJADOR_PRODUCE">
+                <ScalarProperty Name="CONDICION" ColumnName="CONDICION" />
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="CODDEP" ColumnName="CODDEP" />
+                <ScalarProperty Name="APELLIDOS_TRABAJADOR" ColumnName="APELLIDOS_TRABAJADOR" />
+                <ScalarProperty Name="NOMBRES_TRABAJADOR" ColumnName="NOMBRES_TRABAJADOR" />
+                <ScalarProperty Name="CODIGO_TRABAJADOR" ColumnName="CODIGO_TRABAJADOR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="condicion">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.condicion">
+              <MappingFragment StoreEntitySet="condicion">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="distritojudicial">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.distritojudicial">
+              <MappingFragment StoreEntitySet="distritojudicial">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigo_distritojudicial" ColumnName="codigo_distritojudicial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ETAPA_PROCESAL">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.ETAPA_PROCESAL">
+              <MappingFragment StoreEntitySet="ETAPA_PROCESAL">
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ETAPAS">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.ETAPAS">
+              <MappingFragment StoreEntitySet="ETAPAS">
+                <ScalarProperty Name="ANOTACION" ColumnName="ANOTACION" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="auditmod" ColumnName="auditmod" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_proceso" ColumnName="id_proceso" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materia">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.materia">
+              <MappingFragment StoreEntitySet="materia">
+                <ScalarProperty Name="ESTADO" ColumnName="ESTADO" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="medida">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.medida">
+              <MappingFragment StoreEntitySet="medida">
+                <ScalarProperty Name="ANOTACION" ColumnName="ANOTACION" />
+                <ScalarProperty Name="auditmod" ColumnName="auditmod" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_proceso" ColumnName="id_proceso" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="naturaleza">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.naturaleza">
+              <MappingFragment StoreEntitySet="naturaleza">
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RZ_procuraduria">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.RZ_procuraduria">
+              <MappingFragment StoreEntitySet="RZ_procuraduria">
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="auditmod" ColumnName="auditmod" />
+                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+                <ScalarProperty Name="razonsocial" ColumnName="razonsocial" />
+                <ScalarProperty Name="id_proceso" ColumnName="id_proceso" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sede">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.sede">
+              <MappingFragment StoreEntitySet="sede">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigo_distritojudicial" ColumnName="codigo_distritojudicial" />
+                <ScalarProperty Name="codigo_sede" ColumnName="codigo_sede" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipo_responsabilidad">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.tipo_responsabilidad">
+              <MappingFragment StoreEntitySet="tipo_responsabilidad">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_contar_pagina_proceso" FunctionName="DB_PROCURADURIAModel.Store.sp_contar_pagina_proceso" />
+          <FunctionImportMapping FunctionImportName="sp_listar_pagina_proceso" FunctionName="DB_PROCURADURIAModel.Store.sp_listar_pagina_proceso" />
+          <EntitySetMapping Name="dat_materia_tipo_proceso">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.dat_materia_tipo_proceso">
+              <MappingFragment StoreEntitySet="dat_materia_tipo_proceso">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_tipo_proceso" ColumnName="id_tipo_proceso" />
+                <ScalarProperty Name="id_materia" ColumnName="id_materia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_RESOLUCION_SITRADOC">
+            <EntityTypeMapping TypeName="DB_PROCURADURIAModel.VW_RESOLUCION_SITRADOC">
+              <MappingFragment StoreEntitySet="VW_RESOLUCION_SITRADOC">
+                <ScalarProperty Name="FErratas" ColumnName="FErratas" />
+                <ScalarProperty Name="FFirma" ColumnName="FFirma" />
+                <ScalarProperty Name="coddep" ColumnName="coddep" />
+                <ScalarProperty Name="FPublicacion" ColumnName="FPublicacion" />
+                <ScalarProperty Name="FFin" ColumnName="FFin" />
+                <ScalarProperty Name="FIni" ColumnName="FIni" />
+                <ScalarProperty Name="usuario2" ColumnName="usuario2" />
+                <ScalarProperty Name="auditmod2" ColumnName="auditmod2" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="auditmod" ColumnName="auditmod" />
+                <ScalarProperty Name="id_tipo_resolucion" ColumnName="id_tipo_resolucion" />
+                <ScalarProperty Name="sumilla" ColumnName="sumilla" />
+                <ScalarProperty Name="flag" ColumnName="flag" />
+                <ScalarProperty Name="id_documento" ColumnName="id_documento" />
+                <ScalarProperty Name="nro_resol" ColumnName="nro_resol" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

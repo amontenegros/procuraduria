@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WCFSistemasService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://srv-desnet-services.produccion.gob.pe:7019/WCFSistemasService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://srv-desnet-services.produccion.gob.pe:7019/WCFSistemasService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://srv-desnet-services.produccion.gob.pe:7019/WCFSistemasService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WCFSistemasService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IWCFSistemasService_BuscarPersonaEnReniec_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarPersonaEnReniec" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarPersonaEnReniec_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarPersonaEnReniecResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarPersonaEnReniecParametro_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarPersonaEnReniecParametro" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarPersonaEnReniecParametro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarPersonaEnReniecParametroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_Validacion_RENIEC_InputMessage">
+    <wsdl:part name="parameters" element="tns:Validacion_RENIEC" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_Validacion_RENIEC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Validacion_RENIECResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_Validacion_OGACI_InputMessage">
+    <wsdl:part name="parameters" element="tns:Validacion_OGACI" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_Validacion_OGACI_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Validacion_OGACIResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarReniecProduccion_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarReniecProduccion" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarReniecProduccion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarReniecProduccionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarReniecProduccionActualizadoParametro_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarReniecProduccionActualizadoParametro" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarReniecProduccionActualizadoParametro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarReniecProduccionActualizadoParametroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarReniecProduccionParametro_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarReniecProduccionParametro" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_BuscarReniecProduccionParametro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarReniecProduccionParametroResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_Persona_Natural_Reniec_InputMessage">
+    <wsdl:part name="parameters" element="tns:Persona_Natural_Reniec" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_Persona_Natural_Reniec_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Persona_Natural_ReniecResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_GuardarCarnetExtranjeria_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarCarnetExtranjeria" />
+  </wsdl:message>
+  <wsdl:message name="IWCFSistemasService_GuardarCarnetExtranjeria_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarCarnetExtranjeriaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IWCFSistemasService">
+    <wsdl:operation name="BuscarPersonaEnReniec">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarPersonaEnReniec" message="tns:IWCFSistemasService_BuscarPersonaEnReniec_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarPersonaEnReniecResponse" message="tns:IWCFSistemasService_BuscarPersonaEnReniec_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonaEnReniecParametro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarPersonaEnReniecParametro" message="tns:IWCFSistemasService_BuscarPersonaEnReniecParametro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarPersonaEnReniecParametroResponse" message="tns:IWCFSistemasService_BuscarPersonaEnReniecParametro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Validacion_RENIEC">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/Validacion_RENIEC" message="tns:IWCFSistemasService_Validacion_RENIEC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/Validacion_RENIECResponse" message="tns:IWCFSistemasService_Validacion_RENIEC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Validacion_OGACI">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/Validacion_OGACI" message="tns:IWCFSistemasService_Validacion_OGACI_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/Validacion_OGACIResponse" message="tns:IWCFSistemasService_Validacion_OGACI_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarReniecProduccion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccion" message="tns:IWCFSistemasService_BuscarReniecProduccion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccionResponse" message="tns:IWCFSistemasService_BuscarReniecProduccion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarReniecProduccionActualizadoParametro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccionActualizadoParametro" message="tns:IWCFSistemasService_BuscarReniecProduccionActualizadoParametro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccionActualizadoParametroResponse" message="tns:IWCFSistemasService_BuscarReniecProduccionActualizadoParametro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuscarReniecProduccionParametro">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccionParametro" message="tns:IWCFSistemasService_BuscarReniecProduccionParametro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccionParametroResponse" message="tns:IWCFSistemasService_BuscarReniecProduccionParametro_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Persona_Natural_Reniec">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/Persona_Natural_Reniec" message="tns:IWCFSistemasService_Persona_Natural_Reniec_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/Persona_Natural_ReniecResponse" message="tns:IWCFSistemasService_Persona_Natural_Reniec_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarCarnetExtranjeria">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWCFSistemasService/GuardarCarnetExtranjeria" message="tns:IWCFSistemasService_GuardarCarnetExtranjeria_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWCFSistemasService/GuardarCarnetExtranjeriaResponse" message="tns:IWCFSistemasService_GuardarCarnetExtranjeria_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HttpSistemasService" type="tns:IWCFSistemasService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="BuscarPersonaEnReniec">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/BuscarPersonaEnReniec" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarPersonaEnReniecParametro">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/BuscarPersonaEnReniecParametro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validacion_RENIEC">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/Validacion_RENIEC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validacion_OGACI">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/Validacion_OGACI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarReniecProduccion">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarReniecProduccionActualizadoParametro">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccionActualizadoParametro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarReniecProduccionParametro">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/BuscarReniecProduccionParametro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Persona_Natural_Reniec">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/Persona_Natural_Reniec" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarCarnetExtranjeria">
+      <soap:operation soapAction="http://tempuri.org/IWCFSistemasService/GuardarCarnetExtranjeria" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WCFSistemasService">
+    <wsdl:port name="HttpSistemasService" binding="tns:HttpSistemasService">
+      <soap:address location="http://172.20.11.9:7019/WCFSistemasService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

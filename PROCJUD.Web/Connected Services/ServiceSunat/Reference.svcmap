@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d7805568-d5f4-4589-b8c0-e44cee3863e5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.20.11.9:7023/WCFSistemasService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WCFSistemasService.xsd" MetadataType="Schema" ID="544bfcbd-9c37-433c-9822-8c877726ee89" SourceId="1" SourceUrl="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WCFSistemasService1.xsd" MetadataType="Schema" ID="f2f0ad25-b184-4cdf-8e7c-3432981de74a" SourceId="1" SourceUrl="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WCFSistemasService2.xsd" MetadataType="Schema" ID="430268ec-cf4e-4dfc-8de1-b9e39c7e564e" SourceId="1" SourceUrl="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WCFSistemasService3.xsd" MetadataType="Schema" ID="98c83e49-b086-4cdd-8bdd-4a396b9a19d5" SourceId="1" SourceUrl="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?xsd=xsd3" />
+    <MetadataFile FileName="WCFSistemasService.disco" MetadataType="Disco" ID="eb56e974-1188-4c24-a7ff-c8133cf17033" SourceId="1" SourceUrl="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?disco" />
+    <MetadataFile FileName="WCFSistemasService.wsdl" MetadataType="Wsdl" ID="8fac1792-5435-474f-bddd-ce181b5161a3" SourceId="1" SourceUrl="http://srv-desnet-services.produccion.gob.pe:7023/WCFSistemasService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
